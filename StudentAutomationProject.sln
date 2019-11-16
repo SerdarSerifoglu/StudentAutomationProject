@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentAutomationProject", "StudentAutomationProject\StudentAutomationProject.csproj", "{95260CD4-341D-43E6-9582-2534091ADD87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentAutomationProject", "StudentAutomationProject\StudentAutomationProject.csproj", "{95260CD4-341D-43E6-9582-2534091ADD87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentAutomationProject.Core", "StudentAutomationProject.Core\StudentAutomationProject.Core.csproj", "{9938AEB8-3104-4B19-AC96-783A3B007315}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentAutomationProject.BLL", "StudentAutomationProject.BLL\StudentAutomationProject.BLL.csproj", "{F593C26F-6C9A-40CA-80CB-81D9A87FB626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentAutomationProject.DAL", "StudentAutomationProject.DAL\StudentAutomationProject.DAL.csproj", "{01120698-E9FF-49CB-8B07-EA13AB101EF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentAutomationProject.Entities", "StudentAutomationProject.Entities\StudentAutomationProject.Entities.csproj", "{2307B726-6957-4E6F-8766-99FF21E37DEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{95260CD4-341D-43E6-9582-2534091ADD87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95260CD4-341D-43E6-9582-2534091ADD87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95260CD4-341D-43E6-9582-2534091ADD87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9938AEB8-3104-4B19-AC96-783A3B007315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9938AEB8-3104-4B19-AC96-783A3B007315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9938AEB8-3104-4B19-AC96-783A3B007315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9938AEB8-3104-4B19-AC96-783A3B007315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F593C26F-6C9A-40CA-80CB-81D9A87FB626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F593C26F-6C9A-40CA-80CB-81D9A87FB626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F593C26F-6C9A-40CA-80CB-81D9A87FB626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F593C26F-6C9A-40CA-80CB-81D9A87FB626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01120698-E9FF-49CB-8B07-EA13AB101EF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01120698-E9FF-49CB-8B07-EA13AB101EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01120698-E9FF-49CB-8B07-EA13AB101EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01120698-E9FF-49CB-8B07-EA13AB101EF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2307B726-6957-4E6F-8766-99FF21E37DEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2307B726-6957-4E6F-8766-99FF21E37DEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2307B726-6957-4E6F-8766-99FF21E37DEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2307B726-6957-4E6F-8766-99FF21E37DEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
