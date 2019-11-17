@@ -43,5 +43,14 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StudentAutomationProject.Entities\StudentAutomationProject.Entities.csproj">
+      <Project>{2307b726-6957-4e6f-8766-99ff21e37deb}</Project>
+      <Name>StudentAutomationProject.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
