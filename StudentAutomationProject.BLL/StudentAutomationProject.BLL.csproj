@@ -41,9 +41,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ICourseRegistrationService.cs" />
+    <Compile Include="Abstract\ITeachersService.cs" />
+    <Compile Include="Abstract\IStudentsService.cs" />
+    <Compile Include="Abstract\IStudentAffairsService.cs" />
+    <Compile Include="Abstract\IPersonsService.cs" />
+    <Compile Include="Abstract\IExamsService.cs" />
+    <Compile Include="Abstract\IExamResultsService.cs" />
+    <Compile Include="Abstract\IDepartmentsService.cs" />
+    <Compile Include="Abstract\IDepartmentPersonsService.cs" />
+    <Compile Include="Abstract\ICoursesService.cs" />
+    <Compile Include="Concrete\CourseRegistrationManager.cs" />
+    <Compile Include="Concrete\DepartmentPersonsManager.cs" />
+    <Compile Include="Concrete\DepartmentsManager.cs" />
+    <Compile Include="Concrete\ExamResultsManager.cs" />
+    <Compile Include="Concrete\ExamsManager.cs" />
+    <Compile Include="Concrete\PersonsManager.cs" />
+    <Compile Include="Concrete\StudentAffairsManager.cs" />
+    <Compile Include="Concrete\StudentsManager.cs" />
+    <Compile Include="Concrete\TeachersManager.cs" />
+    <Compile Include="Concrete\CoursesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StudentAutomationProject.Core\StudentAutomationProject.Core.csproj">
+      <Project>{9938AEB8-3104-4B19-AC96-783A3B007315}</Project>
+      <Name>StudentAutomationProject.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StudentAutomationProject.DAL\StudentAutomationProject.DAL.csproj">
+      <Project>{8CAF254E-7A9C-4013-9AD2-EDED391D008C}</Project>
+      <Name>StudentAutomationProject.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StudentAutomationProject.Entities\StudentAutomationProject.Entities.csproj">
       <Project>{2307b726-6957-4e6f-8766-99ff21e37deb}</Project>
       <Name>StudentAutomationProject.Entities</Name>
@@ -52,5 +80,6 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

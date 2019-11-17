@@ -1,0 +1,18 @@
+﻿using StudentAutomationProject.Entities.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StudentAutomationProject.BLL.Abstract
+{
+    public interface ICoursesService
+    {
+        List<Courses> GetAll();
+        void Add(Courses course);
+        void Update(Courses course);
+        void Delete(int courseId);
+        Courses GetById(int courseId);
+    }
+}
