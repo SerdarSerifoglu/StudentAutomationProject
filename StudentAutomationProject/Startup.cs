@@ -11,6 +11,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StudentAutomationProject.BLL.Abstract;
+using StudentAutomationProject.BLL.Concrete;
+using StudentAutomationProject.DAL.Abstract;
+using StudentAutomationProject.DAL.Concrete;
 using StudentAutomationProject.Identity;
 
 namespace StudentAutomationProject
@@ -35,6 +39,11 @@ namespace StudentAutomationProject
             });
 
             services.AddDbContext<SapIdentityDbContext>(options => options.UseSqlServer(Configuration["dbConnection"]));
+
+            //DependencyInjection
+            services.AddScoped<IDepartmentsService, DepartmentsManager>();
+            services.AddScoped<IDepartmentsDAL, EfDepartmentsDAL>();
+
 
             services.AddIdentity<SapIdentityUser, SapIdentityRole>()
                 .AddEntityFrameworkStores<SapIdentityDbContext>()

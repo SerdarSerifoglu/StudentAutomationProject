@@ -8,6 +8,6 @@ namespace StudentAutomationProject.Identity
 {
     public class SapIdentityUser:IdentityUser
     {
-        public int Type { get; set; }
+        public int PersonId { get; set; }
     }
 }
