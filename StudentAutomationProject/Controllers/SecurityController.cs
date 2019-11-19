@@ -13,11 +13,13 @@ namespace StudentAutomationProject.Controllers
     {
         private UserManager<SapIdentityUser> _userManager;
         private SignInManager<SapIdentityUser> _signInManager;
+        private RoleManager<SapIdentityRole> _roleManager;
 
-        public SecurityController(UserManager<SapIdentityUser> userManager, SignInManager<SapIdentityUser> signInManager)
+        public SecurityController(UserManager<SapIdentityUser> userManager, SignInManager<SapIdentityUser> signInManager, RoleManager<SapIdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
         public IActionResult Login()
         {
@@ -192,5 +194,90 @@ namespace StudentAutomationProject.Controllers
         {
             return View();
         }
+        #region Role işlemleri
+        public IActionResult RoleCreate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RoleCreate(RoleViewModel roleViewModel)
+        {
+            SapIdentityRole role = new SapIdentityRole()
+            {
+                Name = roleViewModel.Name
+            };
+            IdentityResult result = _roleManager.CreateAsync(role).Result;
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Roles");
+            }
+
+            return View(roleViewModel);
+        }
+
+        public IActionResult Roles()
+        {
+            return View(_roleManager.Roles.ToList());
+        }
+
+        public IActionResult Users()
+        {
+            return View(_userManager.Users.ToList());
+        }
+
+        public IActionResult RoleAssign(string id)
+        {
+            TempData["userId"] = id;
+            SapIdentityUser user = _userManager.FindByIdAsync(id).Result;
+
+            ViewBag.userName = user.UserName;
+
+            IQueryable<SapIdentityRole> roles = _roleManager.Roles;
+
+            List<string> userroles = _userManager.GetRolesAsync(user).Result as List<string>;
+
+            List<RoleAssignViewModel> roleAssignViewModels = new List<RoleAssignViewModel>();
+
+            foreach (var role in roles)
+            {
+                RoleAssignViewModel r = new RoleAssignViewModel();
+                r.RoleId = role.Id;
+                r.RoleName = role.Name;
+                if (userroles.Contains(role.Name))
+                {
+                    r.Exist = true;
+                }
+                else
+                {
+                    r.Exist = false;
+                }
+                roleAssignViewModels.Add(r);
+            }
+
+            return View(roleAssignViewModels);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RoleAssign(List<RoleAssignViewModel> roleAssignViewModels)
+        {
+            SapIdentityUser user = _userManager.FindByIdAsync(TempData["userId"].ToString()).Result;
+
+            foreach (var item in roleAssignViewModels)
+            {
+                if (item.Exist)
+                {
+                    await _userManager.AddToRoleAsync(user, item.RoleName);
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, item.RoleName);
+                }
+            }
+
+            return RedirectToAction("Users");
+        }
+        #endregion
     }
 }

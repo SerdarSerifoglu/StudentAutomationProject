@@ -1,0 +1,28 @@
+﻿@using StudentAutomationProject.Identity
+@model List<SapIdentityRole>
+@{
+    ViewData["Title"] = "Roles";
+    Layout = "~/Views/_StudentAffairsLayout.cshtml";
+}
+
+<h1>Roller</h1>
+<hr />
+<a asp-action="RoleCreate" class="btn btn-info">Role Oluştur</a>
+<hr />
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Rol İsmi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td scope="auto">@item.Id</td>
+                <td scope="auto">@item.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
