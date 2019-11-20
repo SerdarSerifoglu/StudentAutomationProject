@@ -17,9 +17,9 @@ namespace StudentAutomationProject.BLL.Concrete
             _departmentsDAL = departmentsDAL;
         }
 
-        public List<Departments> GetAll()
+        public List<Departments> GetAll(string inc)
         {
-            return _departmentsDAL.GetList();
+            return _departmentsDAL.GetList(inc);
         }
 
         public Departments GetById(int departmentId)

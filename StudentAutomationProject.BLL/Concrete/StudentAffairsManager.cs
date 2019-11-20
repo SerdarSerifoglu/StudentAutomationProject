@@ -17,9 +17,9 @@ namespace StudentAutomationProject.BLL.Concrete
             _studentAffairsDAL = studentAffairsDAL;
         }
 
-        public List<StudentAffairs> GetAll()
+        public List<StudentAffairs> GetAll(string inc)
         {
-            return _studentAffairsDAL.GetList();
+            return _studentAffairsDAL.GetList(inc);
         }
 
         public StudentAffairs GetById(int studentAffairId)

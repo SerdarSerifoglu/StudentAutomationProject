@@ -11,15 +11,8 @@ namespace StudentAutomationProject.Controllers
 {
     public class SecurityController : Controller
     {
-        private UserManager<SapIdentityUser> _userManager;
-        private SignInManager<SapIdentityUser> _signInManager;
-        private RoleManager<SapIdentityRole> _roleManager;
-
-        public SecurityController(UserManager<SapIdentityUser> userManager, SignInManager<SapIdentityUser> signInManager, RoleManager<SapIdentityRole> roleManager)
+        public SecurityController(UserManager<SapIdentityUser> userManager, SignInManager<SapIdentityUser> signInManager, RoleManager<SapIdentityRole> roleManager):base(userManager, signInManager, roleManager)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
         }
         public IActionResult Login()
         {

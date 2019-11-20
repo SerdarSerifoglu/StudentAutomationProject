@@ -9,7 +9,7 @@ namespace StudentAutomationProject.BLL.Abstract
 {
     public interface ICourseRegistrationService
     {
-        List<CourseRegistration> GetAll();
+        List<CourseRegistration> GetAll(string inc);
         void Add(CourseRegistration courseRegistration);
         void Update(CourseRegistration courseRegistration);
         void Delete(int courseRegistrationId);

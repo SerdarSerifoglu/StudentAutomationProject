@@ -17,9 +17,9 @@ namespace StudentAutomationProject.BLL.Concrete
             _examResultsDAL = examResultsDAL;
         }
 
-        public List<ExamResults> GetAll()
+        public List<ExamResults> GetAll(string inc)
         {
-            return _examResultsDAL.GetList();
+            return _examResultsDAL.GetList(inc);
         }
 
         public ExamResults GetById(int examResultId)

@@ -42,7 +42,7 @@ namespace StudentAutomationProject.DAL.Concrete
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
-
+          
 
             modelBuilder.Entity<CourseRegistration>(entity =>
             {

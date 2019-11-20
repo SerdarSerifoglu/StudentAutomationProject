@@ -9,7 +9,7 @@ namespace StudentAutomationProject.BLL.Abstract
 {
     public interface IStudentsService
     {
-        List<Students> GetAll();
+        List<Students> GetAll(string inc);
         void Add(Students student);
         void Update(Students student);
         void Delete(int studentId);

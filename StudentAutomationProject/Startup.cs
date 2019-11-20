@@ -43,6 +43,8 @@ namespace StudentAutomationProject
             //DependencyInjection
             services.AddScoped<IDepartmentsService, DepartmentsManager>();
             services.AddScoped<IDepartmentsDAL, EfDepartmentsDAL>();
+            services.AddScoped<ICoursesService, CoursesManager>();
+            services.AddScoped<ICoursesDAL, EfCoursesDAL>();
 
 
             services.AddIdentity<SapIdentityUser, SapIdentityRole>()
