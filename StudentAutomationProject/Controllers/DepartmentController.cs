@@ -34,7 +34,6 @@ namespace StudentAutomationProject.Controllers
             var list = _departmentsService.GetAll("Courses");
             return View(list);
         }
-
-        public 
+        
     }
 }
