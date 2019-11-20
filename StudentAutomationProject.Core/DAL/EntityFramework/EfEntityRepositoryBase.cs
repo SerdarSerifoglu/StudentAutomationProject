@@ -23,11 +23,11 @@ namespace StudentAutomationProject.Core.DAL.EntityFramework
 
         }
 
-        public List<TEntity> GetList(string inc,Expression<Func<TEntity, bool>> filter = null)
+        public List<TEntity> GetList(string inc , Expression<Func<TEntity, bool>> filter = null)
         {
             using (var context = new TContext())
             {
-                if(inc != null || inc != "")
+                if (inc != null && inc != "")
                 {
                     return filter == null
                   ? context.Set<TEntity>().Include(inc).ToList()

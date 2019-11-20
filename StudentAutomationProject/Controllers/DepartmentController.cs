@@ -26,7 +26,7 @@ namespace StudentAutomationProject.Controllers
             return RedirectToAction("List");
         }
 
-        public async Task<IActionResult>List()
+        public async Task<IActionResult> List()
         {
             //test yapıldı
             var ss = CurrentUser;
