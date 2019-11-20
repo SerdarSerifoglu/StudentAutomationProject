@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StudentAutomationProject.BLL.Abstract;
+using StudentAutomationProject.Entities.Models;
 using StudentAutomationProject.Identity;
 
 namespace StudentAutomationProject.Controllers
@@ -22,7 +23,7 @@ namespace StudentAutomationProject.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("List");
         }
 
         public async Task<IActionResult>List()
@@ -35,5 +36,29 @@ namespace StudentAutomationProject.Controllers
             return View(list);
         }
         
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(Departments model)
+        {
+            _departmentsService.Add(model);
+            return RedirectToAction("List");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var data = _departmentsService.GetById(id);
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Departments model)
+        {
+            _departmentsService.Update(model);
+            return RedirectToAction("List");
+        }
     }
 }
