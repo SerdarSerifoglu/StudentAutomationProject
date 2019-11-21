@@ -17,29 +17,34 @@ namespace StudentAutomationProject.BLL.Concrete
             _departmentPersonsDAL = departmentPersonsDAL;
         }
 
-        public List<DepartmentPersons> GetAll(string inc)
+        public List<DepartmentPerson> GetAll(string inc)
         {
             return _departmentPersonsDAL.GetList(inc);
         }
 
-        public DepartmentPersons GetById(int departmentPersonId)
+        public DepartmentPerson GetById(int departmentPersonId)
         {
             return _departmentPersonsDAL.Get(p => p.Id == departmentPersonId);
         }
 
-        public void Add(DepartmentPersons departmentPerson)
+        public void Add(DepartmentPerson departmentPerson)
         {
             _departmentPersonsDAL.Add(departmentPerson);
         }
 
-        public void Update(DepartmentPersons departmentPerson)
+        public void Update(DepartmentPerson departmentPerson)
         {
             _departmentPersonsDAL.Update(departmentPerson);
         }
 
         public void Delete(int departmentPersonId)
         {
-            _departmentPersonsDAL.Delete(new DepartmentPersons() { Id = departmentPersonId });
+            _departmentPersonsDAL.Delete(new DepartmentPerson() { Id = departmentPersonId });
+        }
+
+        public DepartmentPerson GetByUID(Guid departmentPersonUID)
+        {
+            return _departmentPersonsDAL.Get(p => p.DepartmentUid == departmentPersonUID);
         }
     }
 }

@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace StudentAutomationProject.DAL.Concrete
 {
-    public class EfStudentsDAL : EfEntityRepositoryBase<Students, StudentAutomationDBContext>, IStudentsDAL
+    public class EfStudentsDAL : EfEntityRepositoryBase<Students, StudentAutoDBContext>, IStudentsDAL
     {
-        public List<Students> GetListFullList(int? departmentId)
+        public List<Students> GetListFullList(Guid? departmentUID)
         {
-            using (var context = new StudentAutomationDBContext())
+            using (var context = new StudentAutoDBContext())
             {
                 return (List<Students>)(from s in context.Students
-                                       join dp in context.DepartmentPersons on s.PersonId equals dp.PersonId
-                                       where dp.DepartmentId == departmentId
-                                       select s).Include("Person").ToList();
+                                       join dp in context.DepartmentPerson on s.PersonUid equals dp.PersonUid
+                                       where dp.DepartmentUid == departmentUID
+                                       select s).Include("PersonU").ToList();
             }
         }
     }

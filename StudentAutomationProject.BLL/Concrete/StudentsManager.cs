@@ -17,9 +17,9 @@ namespace StudentAutomationProject.BLL.Concrete
             _studentsDAL = studentsDAL;
         }
 
-        public List<Students> GetAllDepartmentStudent(int? departmentId)
+        public List<Students> GetAllDepartmentStudent(Guid? departmentUID)
         {
-            return _studentsDAL.GetListFullList(departmentId);
+            return _studentsDAL.GetListFullList(departmentUID);
         }
         public List<Students> GetAll(string inc)
         {
@@ -27,9 +27,9 @@ namespace StudentAutomationProject.BLL.Concrete
             return _studentsDAL.GetList(inc);
         }
 
-        public Students GetById(int studentId)
+        public Students GetByUID(Guid studentUID)
         {
-            return _studentsDAL.Get(p => p.PersonId == studentId);
+            return _studentsDAL.Get(p => p.PersonUid == studentUID);
         }
 
         public void Add(Students student)
@@ -42,9 +42,9 @@ namespace StudentAutomationProject.BLL.Concrete
             _studentsDAL.Update(student);
         }
 
-        public void Delete(int studentId)
+        public void Delete(Guid studentUID)
         {
-            _studentsDAL.Delete(new Students() { PersonId = studentId });
+            _studentsDAL.Delete(new Students() { PersonUid = studentUID });
         }
     }
 }

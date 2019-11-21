@@ -17,9 +17,9 @@ namespace StudentAutomationProject.BLL.Concrete
             _coursesDAL = coursesDAL;
         }
 
-        public List<Courses> GetAll(string inc, int? departmentId)
+        public List<Courses> GetAll(string inc, Guid? departmentUID)
         {
-            return departmentId !=null ? _coursesDAL.GetList(inc, x => x.DepartmentId == departmentId) : _coursesDAL.GetList(inc);
+            return departmentUID != null ? _coursesDAL.GetList(inc, x => x.DepartmentUid == departmentUID) : _coursesDAL.GetList(inc);
         }
 
         public Courses GetById(int courseId)
@@ -40,6 +40,11 @@ namespace StudentAutomationProject.BLL.Concrete
         public void Delete(int courseId)
         {
             _coursesDAL.Delete(new Courses() { Id = courseId });
+        }
+
+        public Courses GetByUID(Guid courseUID)
+        {
+            return _coursesDAL.Get(p => p.Uid == courseUID);
         }
     }
 }

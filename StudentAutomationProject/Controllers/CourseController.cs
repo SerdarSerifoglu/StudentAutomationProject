@@ -12,7 +12,7 @@ using StudentAutomationProject.Models.Course;
 
 namespace StudentAutomationProject.Controllers
 {
-    [Authorize]
+   
     public class CourseController : BaseController
     {
         private readonly ICoursesService _coursesService;
@@ -25,22 +25,22 @@ namespace StudentAutomationProject.Controllers
             return RedirectToAction("List");
         }
 
-        public async Task<IActionResult> List(int departmentId)
+        public async Task<IActionResult> List(Guid departmentUID)
         {
             //test yapıldı
             CourseListViewModel viewModel = new CourseListViewModel()
             {
-                DepartmentId = departmentId,
-                Courses = _coursesService.GetAll("Department", departmentId)
+                DepartmentUID = departmentUID,
+                Courses = _coursesService.GetAll("DepartmentU", departmentUID)
             };
             return View(viewModel);
         }
 
-        public IActionResult Add(int departmentId)
+        public IActionResult Add(Guid departmentUID)
         {
             Courses model = new Courses()
             {
-                DepartmentId = departmentId
+                DepartmentUid = departmentUID
             };
             return View(model);
         }
@@ -48,13 +48,14 @@ namespace StudentAutomationProject.Controllers
         [HttpPost]
         public IActionResult Add(Courses model)
         {
+            model.Uid = Guid.NewGuid();
             _coursesService.Add(model);
-            return RedirectToAction("List",new { departmentId = model.DepartmentId });
+            return RedirectToAction("List",new { departmentUID = model.DepartmentUid });
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(Guid uid)
         {
-            var data = _coursesService.GetById(id);
+            var data = _coursesService.GetByUID(uid);
             return View(data);
         }
 
@@ -62,7 +63,7 @@ namespace StudentAutomationProject.Controllers
         public IActionResult Edit(Courses model)
         {
             _coursesService.Update(model);
-            return RedirectToAction("List", new { departmentId = model.DepartmentId });
+            return RedirectToAction("List", new { departmentUID = model.DepartmentUid });
         }
     }
 }

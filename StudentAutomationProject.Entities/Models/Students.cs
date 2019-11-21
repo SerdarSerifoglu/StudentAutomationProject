@@ -8,17 +8,14 @@ namespace StudentAutomationProject.Entities.Models
     {
         public Students()
         {
-            CourseRegistration = new HashSet<CourseRegistration>();
-            DepartmentPersons = new HashSet<DepartmentPersons>();
+            DepartmentPerson = new HashSet<DepartmentPerson>();
             ExamResults = new HashSet<ExamResults>();
         }
 
-        public int PersonId { get; set; }
-        public int? Type { get; set; }
+        public Guid PersonUid { get; set; }
 
-        public virtual Persons Person { get; set; }
-        public virtual ICollection<CourseRegistration> CourseRegistration { get; set; }
-        public virtual ICollection<DepartmentPersons> DepartmentPersons { get; set; }
+        public virtual Persons PersonU { get; set; }
+        public virtual ICollection<DepartmentPerson> DepartmentPerson { get; set; }
         public virtual ICollection<ExamResults> ExamResults { get; set; }
     }
 }

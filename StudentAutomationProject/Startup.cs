@@ -47,6 +47,8 @@ namespace StudentAutomationProject
             services.AddScoped<ICoursesDAL, EfCoursesDAL>();
             services.AddScoped<IStudentsService, StudentsManager>();
             services.AddScoped<IStudentsDAL, EfStudentsDAL>();
+            services.AddScoped<IPersonsService, PersonsManager>();
+            services.AddScoped<IPersonsDAL, EfPersonsDAL>();
 
 
             services.AddIdentity<SapIdentityUser, SapIdentityRole>()

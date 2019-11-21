@@ -6,8 +6,8 @@ namespace StudentAutomationProject.Entities.Models
 {
     public partial class StudentAffairs : IEntity
     {
-        public int PersonId { get; set; }
+        public Guid PersonUid { get; set; }
 
-        public virtual Persons Person { get; set; }
+        public virtual Persons PersonU { get; set; }
     }
 }

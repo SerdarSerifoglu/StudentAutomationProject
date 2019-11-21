@@ -14,5 +14,6 @@ namespace StudentAutomationProject.BLL.Abstract
         void Update(Departments department);
         void Delete(int departmentId);
         Departments GetById(int departmentId);
+        Departments GetByUID(Guid departmentUID);
     }
 }

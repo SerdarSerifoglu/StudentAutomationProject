@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace StudentAutomationProject.DAL.Concrete
 {
-    public class EfCoursesDAL : EfEntityRepositoryBase<Courses, StudentAutomationDBContext>, ICoursesDAL
+    public class EfCoursesDAL : EfEntityRepositoryBase<Courses, StudentAutoDBContext>, ICoursesDAL
     {
         public Courses GetId(int id)
         {
-            using (var context = new StudentAutomationDBContext())
+            using (var context = new StudentAutoDBContext())
             {
                 return context.Courses
                    .Include("Department").Include("CourseRegistration.Person.Person").Where(x=>x.Id==id)

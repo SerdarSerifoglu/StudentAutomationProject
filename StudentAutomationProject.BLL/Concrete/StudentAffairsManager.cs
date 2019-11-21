@@ -22,9 +22,9 @@ namespace StudentAutomationProject.BLL.Concrete
             return _studentAffairsDAL.GetList(inc);
         }
 
-        public StudentAffairs GetById(int studentAffairId)
+        public StudentAffairs GetByUID(Guid studentAffairUID)
         {
-            return _studentAffairsDAL.Get(p => p.PersonId == studentAffairId);
+            return _studentAffairsDAL.Get(p => p.PersonUid == studentAffairUID);
         }
 
         public void Add(StudentAffairs studentAffair)
@@ -37,9 +37,9 @@ namespace StudentAutomationProject.BLL.Concrete
             _studentAffairsDAL.Update(studentAffair);
         }
 
-        public void Delete(int studentAffairId)
+        public void Delete(Guid studentAffairUID)
         {
-            _studentAffairsDAL.Delete(new StudentAffairs() { PersonId = studentAffairId });
+            _studentAffairsDAL.Delete(new StudentAffairs() { PersonUid = studentAffairUID });
         }
     }
 }

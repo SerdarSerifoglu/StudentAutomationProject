@@ -9,6 +9,6 @@ namespace StudentAutomationProject.Models.Student
     public class StudentAddViewModel
     {
         public Students Student { get; set; }
-        public DepartmentPersons DepartmentPerson { get; set; }
+        public DepartmentPerson DepartmentPerson { get; set; }
     }
 }

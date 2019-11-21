@@ -22,9 +22,9 @@ namespace StudentAutomationProject.BLL.Concrete
             return _teachersDAL.GetList(inc);
         }
 
-        public Teachers GetById(int teacherId)
+        public Teachers GetByUID(Guid teacherUID)
         {
-            return _teachersDAL.Get(p => p.PersonId == teacherId);
+            return _teachersDAL.Get(p => p.PersonUid == teacherUID);
         }
 
         public void Add(Teachers teacher)
@@ -37,9 +37,9 @@ namespace StudentAutomationProject.BLL.Concrete
             _teachersDAL.Update(teacher);
         }
 
-        public void Delete(int teacherId)
+        public void Delete(Guid teacherUID)
         {
-            _teachersDAL.Delete(new Teachers() { PersonId = teacherId });
+            _teachersDAL.Delete(new Teachers() { PersonUid = teacherUID });
         }
     }
 }

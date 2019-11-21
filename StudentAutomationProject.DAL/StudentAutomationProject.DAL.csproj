@@ -124,7 +124,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\ICourseRegistrationDAL.cs" />
     <Compile Include="Abstract\IDepartmentPersonsDAL.cs" />
     <Compile Include="Abstract\IDepartmentsDAL.cs" />
     <Compile Include="Abstract\IExamResultsDAL.cs" />
@@ -143,8 +142,7 @@
     <Compile Include="Concrete\EfStudentAffairsDAL.cs" />
     <Compile Include="Concrete\EfStudentsDAL.cs" />
     <Compile Include="Concrete\EfTeachersDAL.cs" />
-    <Compile Include="Concrete\EfCourseRegistrationDAL.cs" />
-    <Compile Include="Concrete\StudentAutomationDBContext.cs" />
+    <Compile Include="Concrete\StudentAutoDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

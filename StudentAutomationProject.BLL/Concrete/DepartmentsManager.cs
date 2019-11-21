@@ -41,5 +41,9 @@ namespace StudentAutomationProject.BLL.Concrete
         {
             _departmentsDAL.Delete(new Departments() { Id = departmentId });
         }
+        public Departments GetByUID(Guid departmentUID)
+        {
+            return _departmentsDAL.Get(p => p.Uid == departmentUID);
+        }
     }
 }

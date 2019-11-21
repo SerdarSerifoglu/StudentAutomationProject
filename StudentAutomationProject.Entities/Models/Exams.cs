@@ -11,10 +11,12 @@ namespace StudentAutomationProject.Entities.Models
             ExamResults = new HashSet<ExamResults>();
         }
 
+        public Guid Uid { get; set; }
         public int Id { get; set; }
-        public int CourseId { get; set; }
-        public DateTime Date { get; set; }
+        public Guid? CourseUid { get; set; }
+        public DateTime? Date { get; set; }
         public string Name { get; set; }
+        public int? Status { get; set; }
 
         public virtual ICollection<ExamResults> ExamResults { get; set; }
     }

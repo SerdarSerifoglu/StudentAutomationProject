@@ -25,7 +25,7 @@ namespace StudentAutomationProject.Controllers
             return RedirectToAction("List");
         }
 
-        public async Task<IActionResult> List()
+        public IActionResult List()
         {
             //test yapıldı
             //var ss = CurrentUser;
@@ -43,13 +43,14 @@ namespace StudentAutomationProject.Controllers
         [HttpPost]
         public IActionResult Add(Departments model)
         {
+            model.Uid = Guid.NewGuid();
             _departmentsService.Add(model);
             return RedirectToAction("List");
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(Guid uid)
         {
-            var data = _departmentsService.GetById(id);
+            var data = _departmentsService.GetByUID(uid);
             return View(data);
         }
 

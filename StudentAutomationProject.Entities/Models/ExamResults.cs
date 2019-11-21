@@ -6,12 +6,14 @@ namespace StudentAutomationProject.Entities.Models
 {
     public partial class ExamResults : IEntity
     {
+        public Guid Uid { get; set; }
         public int Id { get; set; }
-        public int ExamId { get; set; }
-        public int UserId { get; set; }
-        public decimal Grade { get; set; }
+        public Guid? ExamUid { get; set; }
+        public Guid? PersonUid { get; set; }
+        public decimal? Grade { get; set; }
+        public int? Status { get; set; }
 
-        public virtual Exams Exam { get; set; }
-        public virtual Students User { get; set; }
+        public virtual Exams ExamU { get; set; }
+        public virtual Students PersonU { get; set; }
     }
 }

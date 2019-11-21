@@ -17,47 +17,51 @@ namespace StudentAutomationProject.Controllers
     public class StudentController : BaseController
     {
         private readonly IStudentsService _studentsService;
-        public StudentController(UserManager<SapIdentityUser> userManager, IStudentsService studentsService) : base(userManager, null, null)
+        private readonly IPersonsService _personsService;
+        public StudentController(UserManager<SapIdentityUser> userManager, IStudentsService studentsService, IPersonsService personsService) : base(userManager, null, null)
         {
             _studentsService = studentsService;
+            _personsService = personsService;
         }
         public IActionResult Index()
         {
             return RedirectToAction("List");
         }
 
-        public IActionResult List(int departmentId)
+        public IActionResult List(Guid departmentUID)
         {
             //test yapıldı
             StudentListViewModel viewModel = new StudentListViewModel()
             {
-                DepartmentId = departmentId,
-                Students = _studentsService.GetAllDepartmentStudent(departmentId)
+                DepartmentUID = departmentUID,
+                Students = _studentsService.GetAllDepartmentStudent(departmentUID)
             };
 
             return View(viewModel);
         }
 
-        //public IActionResult Add(int departmentId)
-        //{
-        //    //StudentAddViewModel viewModel = new StudentAddViewModel()
-        //    //{
-        //    //    DepartmentPerson = new DepartmentPersons()
-        //    //    {
-        //    //        DepartmentId = departmentId
-        //    //    }
-        //    //};
+        public IActionResult Add(int departmentId)
+        {
+            //StudentAddViewModel viewModel = new StudentAddViewModel()
+            //{
+            //    DepartmentPerson = new DepartmentPersons()
+            //    {
+            //        DepartmentId = departmentId
+            //    }
+            //};
 
-        //    return View();
-        //}
+            return View();
+        }
 
-        //[HttpPost]
-        //public IActionResult Add(Students model)
-        //{
-        //    _studentsService.Add(model);
-        //    return View(model);
-        //    //return RedirectToAction("List", new { departmentId = model.DepartmentId });
-        //}
+        [HttpPost]
+        public IActionResult Add(Persons model)
+        {
+            model.Uid = Guid.NewGuid();
+            _personsService.Add(model);
+            _studentsService.Add(new Students() { PersonUid = model.Uid });
+            return View(model);
+            //return RedirectToAction("List", new { departmentId = model.DepartmentId });
+        }
 
         //public IActionResult Edit(int id)
         //{

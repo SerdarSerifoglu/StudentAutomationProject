@@ -12,7 +12,7 @@ namespace StudentAutomationProject.BLL.Abstract
         List<StudentAffairs> GetAll(string inc);
         void Add(StudentAffairs studentAffair);
         void Update(StudentAffairs studentAffair);
-        void Delete(int studentAffairId);
-        StudentAffairs GetById(int studentAffairId);
+        void Delete(Guid studentAffairUID);
+        StudentAffairs GetByUID(Guid studentAffairUID);
     }
 }

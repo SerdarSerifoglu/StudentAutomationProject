@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StudentAutomationProject.DAL.Concrete
 {
-    public class EfExamsDAL : EfEntityRepositoryBase<Exams, StudentAutomationDBContext>, IExamsDAL
+    public class EfExamsDAL : EfEntityRepositoryBase<Exams, StudentAutoDBContext>, IExamsDAL
     {
     }
 }

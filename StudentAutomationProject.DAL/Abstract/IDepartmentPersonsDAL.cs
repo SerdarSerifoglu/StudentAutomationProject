@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentAutomationProject.DAL.Abstract
 {
-    public interface IDepartmentPersonsDAL : IEntityRepository<DepartmentPersons>
+    public interface IDepartmentPersonsDAL : IEntityRepository<DepartmentPerson>
     {
     }
 }

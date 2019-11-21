@@ -12,7 +12,7 @@ namespace StudentAutomationProject.BLL.Abstract
         List<Teachers> GetAll(string inc);
         void Add(Teachers teacher);
         void Update(Teachers teacher);
-        void Delete(int teacherId);
-        Teachers GetById(int teacherId);
+        void Delete(Guid teacherUID);
+        Teachers GetByUID(Guid teacherUID);
     }
 }
