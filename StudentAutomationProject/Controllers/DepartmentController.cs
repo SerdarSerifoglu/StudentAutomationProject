@@ -11,7 +11,6 @@ using StudentAutomationProject.Identity;
 
 namespace StudentAutomationProject.Controllers
 {
-    [Authorize]
     public class DepartmentController : BaseController
     {
         private readonly IDepartmentsService _departmentsService;
@@ -29,9 +28,9 @@ namespace StudentAutomationProject.Controllers
         public async Task<IActionResult> List()
         {
             //test yapıldı
-            var ss = CurrentUser;
-            var serdar = _userManager.FindByNameAsync(User.Identity.Name).Result;
-            var role = await _userManager.IsInRoleAsync(serdar, "Admin");
+            //var ss = CurrentUser;
+            //var serdar = _userManager.FindByNameAsync(User.Identity.Name).Result;
+            //var role = await _userManager.IsInRoleAsync(serdar, "Admin");
             var list = _departmentsService.GetAll("Courses");
             return View(list);
         }

@@ -10,5 +10,6 @@ namespace StudentAutomationProject.DAL.Abstract
 {
     public interface IStudentsDAL : IEntityRepository<Students>
     {
+        List<Students> GetListFullList(int? departmentId);
     }
 }

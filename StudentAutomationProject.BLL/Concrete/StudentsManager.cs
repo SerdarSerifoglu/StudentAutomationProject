@@ -17,8 +17,13 @@ namespace StudentAutomationProject.BLL.Concrete
             _studentsDAL = studentsDAL;
         }
 
+        public List<Students> GetAllDepartmentStudent(int? departmentId)
+        {
+            return _studentsDAL.GetListFullList(departmentId);
+        }
         public List<Students> GetAll(string inc)
         {
+
             return _studentsDAL.GetList(inc);
         }
 
