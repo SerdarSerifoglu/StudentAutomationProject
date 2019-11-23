@@ -18,9 +18,29 @@ namespace StudentAutomationProject.DAL.Concrete
             using (var context = new StudentAutoDBContext())
             {
                 return (List<Students>)(from s in context.Students
-                                       join dp in context.DepartmentPerson on s.PersonUid equals dp.PersonUid
-                                       where dp.DepartmentUid == departmentUID
-                                       select s).Include("PersonU").ToList();
+                                        join dp in context.DepartmentPerson on s.PersonUid equals dp.PersonUid
+                                        where dp.DepartmentUid == departmentUID
+                                        select s).Include("PersonU").ToList();
+            }
+        }
+
+        public List<Students> GetListNotDepartmentList()
+        {
+            using (var context = new StudentAutoDBContext())
+            {
+                return (List<Students>)(from s in context.Students
+                                        join dp in context.DepartmentPerson on s.PersonUid equals dp.PersonUid into pp
+                                        from pl in pp.DefaultIfEmpty()
+                                        where pl == null
+                                        select s).Include("PersonU").ToList();
+            }
+        }
+
+        public List<Students> GetDepartmentAndPersonDataList()
+        {
+            using (var context = new StudentAutoDBContext())
+            {
+                return context.Set<Students>().Include("PersonU").Include("DepartmentPerson.DepartmentU").ToList();
             }
         }
     }

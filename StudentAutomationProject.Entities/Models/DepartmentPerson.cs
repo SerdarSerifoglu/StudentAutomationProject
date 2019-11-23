@@ -13,6 +13,5 @@ namespace StudentAutomationProject.Entities.Models
 
         public virtual Departments DepartmentU { get; set; }
         public virtual Students PersonU { get; set; }
-        public virtual Teachers PersonUNavigation { get; set; }
     }
 }

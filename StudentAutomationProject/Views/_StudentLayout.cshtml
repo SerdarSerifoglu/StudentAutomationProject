@@ -25,6 +25,9 @@
             padding: 10px 10px 10px 10px;
             border-bottom: 1px solid #808080;
         }
+        #renderBody {
+            padding-top: 10px;
+        }
     </style>
 </head>
 
@@ -37,7 +40,7 @@
                 </div>
             </div>
             <div class="col-md-8 col-lg-8" style="background-color:pink;">
-                <h4 class="text-center">@ViewBag.PageTitle</h4>
+                <h4 class="text-center">@ViewBag.Title</h4>
             </div>
             <div class="col-md-2 col-lg-2" style="background-color:yellow;">
                 <h5 class="text-center">UserName</h5>
@@ -57,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-10 col-lg-10">
+            <div id="renderBody" class="col-md-10 col-lg-10">
                 @RenderBody()
             </div>
         </div>

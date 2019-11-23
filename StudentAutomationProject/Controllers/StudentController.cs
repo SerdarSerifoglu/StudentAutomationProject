@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using StudentAutomationProject.BLL.Abstract;
 using StudentAutomationProject.Entities.Models;
 using StudentAutomationProject.Identity;
@@ -18,10 +19,14 @@ namespace StudentAutomationProject.Controllers
     {
         private readonly IStudentsService _studentsService;
         private readonly IPersonsService _personsService;
-        public StudentController(UserManager<SapIdentityUser> userManager, IStudentsService studentsService, IPersonsService personsService) : base(userManager, null, null)
+        private readonly IDepartmentsService _departmentsService;
+        private readonly IDepartmentPersonsService _departmentPersonsService;
+        public StudentController(UserManager<SapIdentityUser> userManager, IStudentsService studentsService, IPersonsService personsService, IDepartmentsService departmentsService, IDepartmentPersonsService departmentPersonsService) : base(userManager, null, null)
         {
             _studentsService = studentsService;
             _personsService = personsService;
+            _departmentsService = departmentsService;
+            _departmentPersonsService = departmentPersonsService;
         }
         public IActionResult Index()
         {
@@ -30,8 +35,41 @@ namespace StudentAutomationProject.Controllers
 
         public IActionResult List()
         {
-            var list = _studentsService.GetAll("PersonU");
+            var list = _studentsService.GetDepartmentAndPersonDataList();
+
             return View(list);
+        }
+
+        public IActionResult DepartmentAdd()
+        {
+            var list = _studentsService.GetListNotDepartmentList();
+            return View(list);
+        }
+        [HttpPost]
+        public JsonResult JsonDepartmentAdd([FromBody]StudentDataModel model)
+        {
+            if (model != null && model.DepartmentUID != null && model.DepartmentUID != Convert.ToString(Guid.Empty))
+            {
+                foreach (var item in model.Dizi)
+                {
+                    _departmentPersonsService.Add(new DepartmentPerson()
+                    {
+                        Uid = Guid.NewGuid(),
+                        DepartmentUid = Guid.Parse(model.DepartmentUID),
+                        PersonUid = Guid.Parse(item)
+                    });
+                }
+
+            }
+            return Json(new { Success = true, Message = "" });
+        }
+
+        public JsonResult ListDepartmentCombo()
+        {
+            List<Departments> list = new List<Departments>();
+            list = _departmentsService.GetAll();
+            list.Insert(0, new Departments() { Uid = Guid.Empty, Name = "Bölüm Seçiniz" });
+            return Json(new SelectList(list, "Uid", "Name"));
         }
 
         public IActionResult Add(int departmentId)

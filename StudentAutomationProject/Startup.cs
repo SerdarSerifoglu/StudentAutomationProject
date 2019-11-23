@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 using StudentAutomationProject.BLL.Abstract;
 using StudentAutomationProject.BLL.Concrete;
 using StudentAutomationProject.DAL.Abstract;
@@ -46,6 +47,11 @@ namespace StudentAutomationProject
                .AddEntityFrameworkStores<SapIdentityDbContext>()
                .AddDefaultTokenProviders();
 
+            //Sayfalarda bu þekilde dönüþtürülen jsonlarýn property isimlerinin camel case ile yazýlmasýný engelledi.
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
 
             //DependencyInjection
             services.AddScoped<IDepartmentsService, DepartmentsManager>();
@@ -56,9 +62,11 @@ namespace StudentAutomationProject
             services.AddScoped<IStudentsDAL, EfStudentsDAL>();
             services.AddScoped<IPersonsService, PersonsManager>();
             services.AddScoped<IPersonsDAL, EfPersonsDAL>();
+            services.AddScoped<IDepartmentPersonsService, DepartmentPersonsManager>();
+            services.AddScoped<IDepartmentPersonsDAL, EfDepartmentPersonsDAL>();
 
 
-           
+
 
             services.Configure<IdentityOptions>(options =>
             {

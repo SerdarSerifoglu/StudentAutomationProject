@@ -21,6 +21,17 @@ namespace StudentAutomationProject.BLL.Concrete
         {
             return _studentsDAL.GetListFullList(departmentUID);
         }
+
+        public List<Students> GetListNotDepartmentList()
+        {
+            return _studentsDAL.GetListNotDepartmentList();
+        }
+
+        public List<Students> GetDepartmentAndPersonDataList()
+        {
+            return _studentsDAL.GetDepartmentAndPersonDataList();
+        }
+
         public List<Students> GetAll(string inc)
         {
 

@@ -91,11 +91,6 @@ namespace StudentAutomationProject.DAL.Concrete
                     .WithMany(p => p.DepartmentPerson)
                     .HasForeignKey(d => d.PersonUid)
                     .HasConstraintName("FK_DepartmentPerson_Students");
-
-                entity.HasOne(d => d.PersonUNavigation)
-                    .WithMany(p => p.DepartmentPerson)
-                    .HasForeignKey(d => d.PersonUid)
-                    .HasConstraintName("FK_DepartmentPerson_Teachers");
             });
 
             modelBuilder.Entity<Departments>(entity =>

@@ -11,5 +11,7 @@ namespace StudentAutomationProject.DAL.Abstract
     public interface IStudentsDAL : IEntityRepository<Students>
     {
         List<Students> GetListFullList(Guid? departmentUID);
+        List<Students> GetListNotDepartmentList();
+        List<Students> GetDepartmentAndPersonDataList();
     }
 }

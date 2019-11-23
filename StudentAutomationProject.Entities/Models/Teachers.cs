@@ -8,12 +8,10 @@ namespace StudentAutomationProject.Entities.Models
     {
         public Teachers()
         {
-            DepartmentPerson = new HashSet<DepartmentPerson>();
         }
 
         public Guid PersonUid { get; set; }
 
         public virtual Persons PersonU { get; set; }
-        public virtual ICollection<DepartmentPerson> DepartmentPerson { get; set; }
     }
 }
