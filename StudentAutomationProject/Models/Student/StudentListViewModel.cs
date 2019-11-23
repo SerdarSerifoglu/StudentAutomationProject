@@ -8,7 +8,6 @@ namespace StudentAutomationProject.Models.Student
 {
     public class StudentListViewModel
     {
-        public Guid DepartmentUID { get; set; }
         public List<Students> Students { get; set; }
     }
 }

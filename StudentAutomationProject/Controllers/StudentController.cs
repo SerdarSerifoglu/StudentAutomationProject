@@ -28,16 +28,10 @@ namespace StudentAutomationProject.Controllers
             return RedirectToAction("List");
         }
 
-        public IActionResult List(Guid departmentUID)
+        public IActionResult List()
         {
-            //test yapıldı
-            StudentListViewModel viewModel = new StudentListViewModel()
-            {
-                DepartmentUID = departmentUID,
-                Students = _studentsService.GetAllDepartmentStudent(departmentUID)
-            };
-
-            return View(viewModel);
+            var list = _studentsService.GetAll("PersonU");
+            return View(list);
         }
 
         public IActionResult Add(int departmentId)
@@ -56,10 +50,14 @@ namespace StudentAutomationProject.Controllers
         [HttpPost]
         public IActionResult Add(Persons model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             model.Uid = Guid.NewGuid();
             _personsService.Add(model);
             _studentsService.Add(new Students() { PersonUid = model.Uid });
-            return View(model);
+            return RedirectToAction("List");
             //return RedirectToAction("List", new { departmentId = model.DepartmentId });
         }
 

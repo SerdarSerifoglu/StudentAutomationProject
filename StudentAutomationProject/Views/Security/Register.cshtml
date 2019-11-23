@@ -1,6 +1,6 @@
 ﻿@model StudentAutomationProject.Models.Security.RegisterViewModel
 @{
-    Layout = null;
+    Layout = "~/Views/_LoginLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -14,11 +14,12 @@
     <h3>Kayıt Ol</h3>
     <form asp-controller="Security" asp-action="Register" method="post">
         <div asp-validation-summary="All"></div>
-        <input type="text" asp-for="Username" placeholder="Kullanıcı Adı" /><br />
-        <input type="password" asp-for="Password" placeholder="Şifre" /><br />
-        <input type="password" asp-for="ConfirmedPassword" placeholder="Şifre Tekrar" /><br />
-        <input type="text" asp-for="Email" placeholder="Email" /><br />
-        <input type="submit" value="Kayıt Ol" /><br />
+        <input type="text" asp-for="Username" class="fadeIn second" placeholder="Kullanıcı Adı" /><br />
+        <input type="text" asp-for="Email" class="fadeIn second" placeholder="Email" /><br />
+        <input type="password" asp-for="Password" class="fadeIn third" placeholder="Şifre" /><br />
+        <input type="password" asp-for="ConfirmedPassword" class="fadeIn third" placeholder="Şifre Tekrar" /><br />
+
+        <input type="submit" class="fadeIn fourth" value="Kayıt Ol" /><br />
     </form>
 </body>
 </html>

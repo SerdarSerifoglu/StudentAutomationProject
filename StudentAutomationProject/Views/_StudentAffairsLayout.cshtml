@@ -5,12 +5,73 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-</head>
-<body>
+    <style>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-    <div class="container">
-        @RenderBody()
+        .leftMenuPart {
+            padding: 10px 10px 10px 10px;
+            border-bottom: 1px solid #808080;
+            border-right: 1px solid #808080;
+            color:black;
+        }
+            .leftMenuPart:hover {
+                background-color:#e0e0e0;
+                font-style:normal;
+            }
+
+        .topLeftBar {
+            border-right: 1px solid #808080;
+        }
+
+        .topBar {
+            padding: 10px 10px 10px 10px;
+            border-bottom: 1px solid #808080;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row topBar" style="background-color:red;">
+            <div class="col-md-2 col-lg-2 topLeftBar">
+                <div class="logo text-center">
+                    Öğrenci İşleri
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-8" style="background-color:pink;">
+                <h4 class="text-center">@ViewBag.PageTitle</h4>
+            </div>
+            <div class="col-md-2 col-lg-2" style="background-color:yellow;">
+                <h5 class="text-center">UserName</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-lg-2 leftBar">
+                <div class="leftMenu">
+                    <div class="row leftMenuPart">
+                        <a>Öğrenci Listesi</a>
+                    </div>
+                    <a href="@Url.Action("Add","Student")">
+                        <div class="row leftMenuPart">
+                            Öğrenci Kayıt
+                        </div>
+                    </a>
+                    <div class="row leftMenuPart">
+                        Bölüm Kayıt
+                    </div>
+                    <div class="row leftMenuPart">
+                        Sınavlar
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-10 col-lg-10">
+                @RenderBody()
+            </div>
+        </div>
     </div>
 </body>
 </html>

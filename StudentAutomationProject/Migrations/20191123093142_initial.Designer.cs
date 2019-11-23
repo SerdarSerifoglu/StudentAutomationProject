@@ -10,14 +10,14 @@ using StudentAutomationProject.Identity;
 namespace StudentAutomationProject.Migrations
 {
     [DbContext(typeof(SapIdentityDbContext))]
-    [Migration("20191116214448_addIdentity")]
-    partial class addIdentity
+    [Migration("20191123093142_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -157,6 +157,8 @@ namespace StudentAutomationProject.Migrations
                         .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash");
+
+                    b.Property<Guid?>("PersonUID");
 
                     b.Property<string>("PhoneNumber");
 

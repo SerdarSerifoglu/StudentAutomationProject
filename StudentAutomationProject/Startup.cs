@@ -38,7 +38,14 @@ namespace StudentAutomationProject
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<SapIdentityDbContext>(options => options.UseSqlServer(Configuration["dbConnection"]));
+            //services.AddDbContext<SapIdentityDbContext>(options => options.UseSqlServer(Configuration["dbConnection"]));
+            services.AddDbContext<SapIdentityDbContext>(options => options.UseSqlServer("Server=DESKTOP-RHAN2O7;Database=StudentAutoDB;User ID=serdar2;Password=123456;"));
+            
+
+            services.AddIdentity<SapIdentityUser, SapIdentityRole>()
+               .AddEntityFrameworkStores<SapIdentityDbContext>()
+               .AddDefaultTokenProviders();
+
 
             //DependencyInjection
             services.AddScoped<IDepartmentsService, DepartmentsManager>();
@@ -51,9 +58,7 @@ namespace StudentAutomationProject
             services.AddScoped<IPersonsDAL, EfPersonsDAL>();
 
 
-            services.AddIdentity<SapIdentityUser, SapIdentityRole>()
-                .AddEntityFrameworkStores<SapIdentityDbContext>()
-                .AddDefaultTokenProviders();
+           
 
             services.Configure<IdentityOptions>(options =>
             {

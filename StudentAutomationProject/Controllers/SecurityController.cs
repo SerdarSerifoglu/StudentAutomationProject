@@ -82,7 +82,8 @@ namespace StudentAutomationProject.Controllers
             var user = new SapIdentityUser
             {
                 UserName = registerViewModel.Username,
-                Email = registerViewModel.Email
+                Email = registerViewModel.Email,
+                Type = 1
             };
 
             var result = await _userManager.CreateAsync(user, registerViewModel.Password);
@@ -96,7 +97,7 @@ namespace StudentAutomationProject.Controllers
                 //Mail yollanıcak
 
                 //yönlendirilecek action yazılacak
-                return RedirectToAction();
+                return RedirectToAction("Login");
             }
 
             return View(registerViewModel);

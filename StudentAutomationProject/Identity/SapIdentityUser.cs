@@ -8,6 +8,7 @@ namespace StudentAutomationProject.Identity
 {
     public class SapIdentityUser:IdentityUser
     {
-        public int PersonId { get; set; }
+        public Guid? PersonUID { get; set; }
+        public int Type { get; set; }
     }
 }
