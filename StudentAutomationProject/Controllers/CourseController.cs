@@ -31,7 +31,7 @@ namespace StudentAutomationProject.Controllers
             CourseListViewModel viewModel = new CourseListViewModel()
             {
                 DepartmentUID = departmentUID,
-                Courses = _coursesService.GetAll("DepartmentU", departmentUID)
+                Courses = _coursesService.GetAll(departmentUID, "DepartmentU")
             };
             return View(viewModel);
         }

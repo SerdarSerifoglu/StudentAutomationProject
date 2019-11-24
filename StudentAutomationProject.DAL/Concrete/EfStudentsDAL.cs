@@ -43,5 +43,27 @@ namespace StudentAutomationProject.DAL.Concrete
                 return context.Set<Students>().Include("PersonU").Include("DepartmentPerson.DepartmentU").ToList();
             }
         }
+
+        public List<Students> GetListNotCourseList(Guid? courseUID)
+        {
+            using (var context = new StudentAutoDBContext())
+            {
+                return (List<Students>)(from s in context.Students
+                                        join dp in context.CourseRegistration on s.PersonUid equals dp.StudentUid into pp
+                                        from pl in pp.DefaultIfEmpty()
+                                        where pl == null
+                                        select s).Include("PersonU").ToList();
+                //return (List<Students>)(from cr in context.CourseRegistration
+                //                        where
+                //                          cr.CourseUid != courseUID
+                //                        select s).Include("PersonU").ToList();
+                //return (List<Students>)(from s in context.Students
+                //                        from cr in context.CourseRegistration
+                //                        where
+                //                          s.PersonUid != cr.StudentUid &&
+                //                          cr.CourseUid != courseUID
+                //                        select s).Include("PersonU").ToList();
+            }
+        }
     }
 }

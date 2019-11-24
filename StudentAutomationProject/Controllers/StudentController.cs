@@ -21,12 +21,14 @@ namespace StudentAutomationProject.Controllers
         private readonly IPersonsService _personsService;
         private readonly IDepartmentsService _departmentsService;
         private readonly IDepartmentPersonsService _departmentPersonsService;
-        public StudentController(UserManager<SapIdentityUser> userManager, IStudentsService studentsService, IPersonsService personsService, IDepartmentsService departmentsService, IDepartmentPersonsService departmentPersonsService) : base(userManager, null, null)
+        private readonly ICoursesService _coursesService;
+        public StudentController(UserManager<SapIdentityUser> userManager, IStudentsService studentsService, IPersonsService personsService, IDepartmentsService departmentsService, IDepartmentPersonsService departmentPersonsService, ICoursesService coursesService) : base(userManager, null, null)
         {
             _studentsService = studentsService;
             _personsService = personsService;
             _departmentsService = departmentsService;
             _departmentPersonsService = departmentPersonsService;
+            _coursesService = coursesService;
         }
         public IActionResult Index()
         {
@@ -40,6 +42,40 @@ namespace StudentAutomationProject.Controllers
             return View(list);
         }
 
+        public IActionResult Add(int departmentId)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(Persons model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            model.Uid = Guid.NewGuid();
+            _personsService.Add(model);
+            _studentsService.Add(new Students() { PersonUid = model.Uid });
+            return RedirectToAction("List");
+            //return RedirectToAction("List", new { departmentId = model.DepartmentId });
+        }
+
+        public IActionResult Edit(Guid uid)
+        {
+            var data = _personsService.GetByUID(uid);
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Persons model)
+        {
+            _personsService.Update(model);
+            return RedirectToAction("List");
+        }
+
+
+        #region Bölüm Kayıt İşlemleri
         public IActionResult DepartmentAdd()
         {
             var list = _studentsService.GetListNotDepartmentList();
@@ -71,45 +107,44 @@ namespace StudentAutomationProject.Controllers
             list.Insert(0, new Departments() { Uid = Guid.Empty, Name = "Bölüm Seçiniz" });
             return Json(new SelectList(list, "Uid", "Name"));
         }
+        #endregion
 
-        public IActionResult Add(int departmentId)
+        #region Ders Kayıt İşlemleri
+        //Komple kaldırılabilir Öğrenci Kayıt yapıcak şekilde yapabilirim bakılacak
+        
+        public IActionResult SelectCourse()
         {
-            //StudentAddViewModel viewModel = new StudentAddViewModel()
-            //{
-            //    DepartmentPerson = new DepartmentPersons()
-            //    {
-            //        DepartmentId = departmentId
-            //    }
-            //};
-
-            return View();
+            return View(new StudentCourseDataModel());
         }
 
+        //public IActionResult CourseAdd(string courseUID)
+        //{
+        //    var list = _studentsService.GetListNotCourseList(Guid.Empty);
+        //    return View(list);
+        //}
         [HttpPost]
-        public IActionResult Add(Persons model)
+        public JsonResult JsonCourseAdd([FromBody]StudentCourseDataModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            model.Uid = Guid.NewGuid();
-            _personsService.Add(model);
-            _studentsService.Add(new Students() { PersonUid = model.Uid });
-            return RedirectToAction("List");
-            //return RedirectToAction("List", new { departmentId = model.DepartmentId });
+            var list = _studentsService.GetListNotCourseList(Guid.Parse(model.CourseUID));
+            return Json(new { Success = true, List = list });
         }
 
-        //public IActionResult Edit(int id)
-        //{
-        //    var data = _coursesService.GetById(id);
-        //    return View(data);
-        //}
+        public IActionResult JsonCourseAdd()
+        {
+            var list = _studentsService.GetListNotCourseList(Guid.Empty);
+            return View(list);
+        }
 
-        //[HttpPost]
-        //public IActionResult Edit(Courses model)
-        //{
-        //    _coursesService.Update(model);
-        //    return RedirectToAction("List", new { departmentId = model.DepartmentId });
-        //}
+
+
+
+        public JsonResult ListCourseCombo(string departmentUID)
+        {
+            List<Courses> list = new List<Courses>();
+            list = _coursesService.GetAll(Guid.Parse(departmentUID));
+            list.Insert(0, new Courses() { Uid = Guid.Empty, Name = "Ders Seçiniz" });
+            return Json(new SelectList(list, "Uid", "Name"));
+        }
+        #endregion
     }
 }

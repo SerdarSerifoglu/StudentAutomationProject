@@ -9,7 +9,7 @@ namespace StudentAutomationProject.BLL.Abstract
 {
     public interface ICoursesService
     {
-        List<Courses> GetAll(string inc, Guid? departmentUID);
+        List<Courses> GetAll(Guid? departmentUID,string inc= null);
         void Add(Courses course);
         void Update(Courses course);
         void Delete(int courseId);

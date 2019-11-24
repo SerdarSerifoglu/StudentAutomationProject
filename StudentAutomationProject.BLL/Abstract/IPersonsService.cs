@@ -13,6 +13,6 @@ namespace StudentAutomationProject.BLL.Abstract
         void Add(Persons person);
         void Update(Persons person);
         void Delete(int personId);
-        Persons GetById(int personId);
+        Persons GetByUID(Guid uid);
     }
 }

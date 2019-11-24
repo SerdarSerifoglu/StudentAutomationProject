@@ -32,6 +32,11 @@ namespace StudentAutomationProject.BLL.Concrete
             return _studentsDAL.GetDepartmentAndPersonDataList();
         }
 
+        public List<Students> GetListNotCourseList(Guid? courseUID)
+        {
+            return _studentsDAL.GetListNotCourseList(courseUID);
+        }
+
         public List<Students> GetAll(string inc)
         {
 

@@ -17,7 +17,7 @@ namespace StudentAutomationProject.BLL.Concrete
             _coursesDAL = coursesDAL;
         }
 
-        public List<Courses> GetAll(string inc, Guid? departmentUID)
+        public List<Courses> GetAll(Guid? departmentUID, string inc = null)
         {
             return departmentUID != null ? _coursesDAL.GetList(inc, x => x.DepartmentUid == departmentUID) : _coursesDAL.GetList(inc);
         }

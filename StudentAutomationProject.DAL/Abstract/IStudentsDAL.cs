@@ -13,5 +13,6 @@ namespace StudentAutomationProject.DAL.Abstract
         List<Students> GetListFullList(Guid? departmentUID);
         List<Students> GetListNotDepartmentList();
         List<Students> GetDepartmentAndPersonDataList();
+        List<Students> GetListNotCourseList(Guid? courseUID);
     }
 }

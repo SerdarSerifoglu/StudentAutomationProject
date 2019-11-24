@@ -22,9 +22,9 @@ namespace StudentAutomationProject.BLL.Concrete
             return _personsDAL.GetList(inc);
         }
 
-        public Persons GetById(int personId)
+        public Persons GetByUID(Guid uid)
         {
-            return _personsDAL.Get(p => p.Id == personId);
+            return _personsDAL.Get(p => p.Uid == uid);
         }
 
         public void Add(Persons person)

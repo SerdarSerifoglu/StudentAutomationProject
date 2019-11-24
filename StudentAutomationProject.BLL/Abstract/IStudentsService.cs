@@ -12,6 +12,7 @@ namespace StudentAutomationProject.BLL.Abstract
         List<Students> GetAllDepartmentStudent(Guid? departmentUID);
         List<Students> GetListNotDepartmentList();
         List<Students> GetDepartmentAndPersonDataList();
+        List<Students> GetListNotCourseList(Guid? courseUID);
         List<Students> GetAll(string inc=null);
         void Add(Students student);
         void Update(Students student);
