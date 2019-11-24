@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 namespace StudentAutomationProject.Entities.Models
 {
-    public partial class Students : IEntity
+    public partial class Students:IEntity
     {
         public Students()
         {
+            CourseRegistration = new HashSet<CourseRegistration>();
             DepartmentPerson = new HashSet<DepartmentPerson>();
             ExamResults = new HashSet<ExamResults>();
         }
@@ -15,6 +16,7 @@ namespace StudentAutomationProject.Entities.Models
         public Guid PersonUid { get; set; }
 
         public virtual Persons PersonU { get; set; }
+        public virtual ICollection<CourseRegistration> CourseRegistration { get; set; }
         public virtual ICollection<DepartmentPerson> DepartmentPerson { get; set; }
         public virtual ICollection<ExamResults> ExamResults { get; set; }
     }

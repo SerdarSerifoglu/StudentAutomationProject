@@ -16,6 +16,7 @@ namespace StudentAutomationProject.DAL.Concrete
         {
         }
 
+		public virtual DbSet<CourseRegistration> CourseRegistration { get; set; }
         public virtual DbSet<Courses> Courses { get; set; }
         public virtual DbSet<DepartmentPerson> DepartmentPerson { get; set; }
         public virtual DbSet<Departments> Departments { get; set; }
@@ -38,6 +39,33 @@ namespace StudentAutomationProject.DAL.Concrete
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
+			    
+            modelBuilder.Entity<CourseRegistration>(entity =>
+            {
+                entity.HasKey(e => e.Uid);
+
+                entity.Property(e => e.Uid)
+                    .HasColumnName("UID")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CourseUid).HasColumnName("CourseUID");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.StudentUid).HasColumnName("StudentUID");
+
+                entity.HasOne(d => d.CourseU)
+                    .WithMany(p => p.CourseRegistration)
+                    .HasForeignKey(d => d.CourseUid)
+                    .HasConstraintName("FK_CourseRegistration_Courses");
+
+                entity.HasOne(d => d.StudentU)
+                    .WithMany(p => p.CourseRegistration)
+                    .HasForeignKey(d => d.StudentUid)
+                    .HasConstraintName("FK_CourseRegistration_Students");
+            });
 
             modelBuilder.Entity<Courses>(entity =>
             {

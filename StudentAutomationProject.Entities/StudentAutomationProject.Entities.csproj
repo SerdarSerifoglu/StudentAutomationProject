@@ -124,13 +124,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Courses.cs" />
-    <Compile Include="Models\DepartmentPerson.cs" />
-    <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\ExamResults.cs" />
     <Compile Include="Models\Exams.cs" />
     <Compile Include="Models\Persons.cs" />
     <Compile Include="Models\StudentAffairs.cs" />
+    <Compile Include="Models\CourseRegistration.cs" />
+    <Compile Include="Models\Courses.cs" />
+    <Compile Include="Models\DepartmentPerson.cs" />
+    <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Students.cs" />
     <Compile Include="Models\Teachers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +146,7 @@
       <Name>StudentAutomationProject.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
