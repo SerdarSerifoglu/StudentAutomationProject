@@ -189,8 +189,19 @@ namespace StudentAutomationProject.DAL.Concrete
                     .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name).HasMaxLength(50);
-            });
 
+                entity.HasOne(d => d.CourseU)
+                    .WithMany(p => p.Exams)
+                    .HasForeignKey(d => d.CourseUid)
+                    .HasConstraintName("FK_Exams_Courses");
+
+                //ID update sıkıntısını çözüyor
+                entity.Property(p => p.Id)
+                   .UseSqlServerIdentityColumn();
+                entity.Property(p => p.Id)
+                    .Metadata.AfterSaveBehavior = PropertySaveBehavior.Ignore;
+            });
+            
             modelBuilder.Entity<Persons>(entity =>
             {
                 entity.HasKey(e => e.Uid);

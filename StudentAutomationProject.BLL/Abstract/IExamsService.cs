@@ -9,10 +9,10 @@ namespace StudentAutomationProject.BLL.Abstract
 {
     public interface IExamsService
     {
-        List<Exams> GetAll(string inc);
+        List<Exams> GetAll(string inc=null);
         void Add(Exams exam);
         void Update(Exams exam);
         void Delete(int examId);
-        Exams GetById(int examId);
+        Exams GetByUID(Guid examUID);
     }
 }

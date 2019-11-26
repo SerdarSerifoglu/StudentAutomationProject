@@ -17,14 +17,14 @@ namespace StudentAutomationProject.BLL.Concrete
             _examsDAL = examsDAL;
         }
 
-        public List<Exams> GetAll(string inc)
+        public List<Exams> GetAll(string inc=null)
         {
             return _examsDAL.GetList(inc);
         }
 
-        public Exams GetById(int examId)
+        public Exams GetByUID(Guid examUID)
         {
-            return _examsDAL.Get(p => p.Id == examId);
+            return _examsDAL.Get(p => p.Uid == examUID);
         }
 
         public void Add(Exams exam)

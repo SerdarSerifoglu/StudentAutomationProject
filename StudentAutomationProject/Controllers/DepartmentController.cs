@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StudentAutomationProject.BLL.Abstract;
+using StudentAutomationProject.Core.Statics;
 using StudentAutomationProject.Entities.Models;
 using StudentAutomationProject.Identity;
 
@@ -22,15 +23,12 @@ namespace StudentAutomationProject.Controllers
         }
         public IActionResult Index()
         {
-            return RedirectToAction("List");
+            var user = CurrentUser;
+            return View(user);
         }
 
         public IActionResult List()
         {
-            //test yapıldı
-            //var ss = CurrentUser;
-            //var serdar = _userManager.FindByNameAsync(User.Identity.Name).Result;
-            //var role = await _userManager.IsInRoleAsync(serdar, "Admin");
             var list = _departmentsService.GetAll("Courses");
             return View(list);
         }

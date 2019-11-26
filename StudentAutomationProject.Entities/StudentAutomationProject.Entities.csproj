@@ -124,8 +124,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ExamResults.cs" />
     <Compile Include="Models\Exams.cs" />
+    <Compile Include="Models\ExamResults.cs" />
     <Compile Include="Models\Persons.cs" />
     <Compile Include="Models\StudentAffairs.cs" />
     <Compile Include="Models\CourseRegistration.cs" />

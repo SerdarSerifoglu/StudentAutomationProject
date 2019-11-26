@@ -9,6 +9,7 @@ namespace StudentAutomationProject.Entities.Models
         public Courses()
         {
             CourseRegistration = new HashSet<CourseRegistration>();
+            Exams = new HashSet<Exams>();
         }
 
         public Guid Uid { get; set; }
@@ -19,5 +20,6 @@ namespace StudentAutomationProject.Entities.Models
 
         public virtual Departments DepartmentU { get; set; }
         public virtual ICollection<CourseRegistration> CourseRegistration { get; set; }
+        public virtual ICollection<Exams> Exams { get; set; }
     }
 }

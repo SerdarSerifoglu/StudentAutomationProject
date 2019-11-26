@@ -18,6 +18,7 @@ namespace StudentAutomationProject.Entities.Models
         public string Name { get; set; }
         public int? Status { get; set; }
 
+        public virtual Courses CourseU { get; set; }
         public virtual ICollection<ExamResults> ExamResults { get; set; }
     }
 }

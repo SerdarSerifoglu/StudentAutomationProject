@@ -47,7 +47,7 @@ namespace StudentAutomationProject.Controllers
             if (result.Succeeded)
             {
                 //Yollanıcak Action yazılacak şimdilik boş
-                return RedirectToAction();
+                return RedirectToAction("Index","Department");
             }
 
             ModelState.AddModelError(String.Empty, "Giriş Yapılamadı");
