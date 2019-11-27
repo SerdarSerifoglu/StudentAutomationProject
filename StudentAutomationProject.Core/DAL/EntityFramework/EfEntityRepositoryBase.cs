@@ -14,11 +14,18 @@ namespace StudentAutomationProject.Core.DAL.EntityFramework
        where TContext : DbContext, new()
     {
 
-        public TEntity Get(Expression<Func<TEntity, bool>> filter)
+        public TEntity Get(Expression<Func<TEntity, bool>> filter, string include=null)
         {
             using (var context = new TContext())
             {
-                return context.Set<TEntity>().SingleOrDefault(filter);
+                if (include != null && include != "")
+                {
+                    return context.Set<TEntity>().Include(include).SingleOrDefault(filter);
+                }
+                else
+                {
+                    return context.Set<TEntity>().SingleOrDefault(filter);
+                }
             }
 
         }

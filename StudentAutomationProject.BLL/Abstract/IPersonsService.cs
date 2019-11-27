@@ -14,5 +14,6 @@ namespace StudentAutomationProject.BLL.Abstract
         void Update(Persons person);
         void Delete(int personId);
         Persons GetByUID(Guid uid);
+        Persons GetByTcNo(string tcNo);
     }
 }

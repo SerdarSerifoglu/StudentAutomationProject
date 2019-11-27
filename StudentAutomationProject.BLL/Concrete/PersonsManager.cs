@@ -27,6 +27,11 @@ namespace StudentAutomationProject.BLL.Concrete
             return _personsDAL.Get(p => p.Uid == uid);
         }
 
+        public Persons GetByTcNo(string tcNo)
+        {
+            return _personsDAL.Get(p => p.TcNo == tcNo);
+        }
+
         public void Add(Persons person)
         {
             _personsDAL.Add(person);

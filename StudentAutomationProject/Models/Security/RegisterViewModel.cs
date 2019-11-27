@@ -21,5 +21,7 @@ namespace StudentAutomationProject.Models.Security
         public string Email { get; set; }
         [Required]
         public int Type { get; set; }
+        [Required]
+        public string TCNO { get; set; }
     }
 }

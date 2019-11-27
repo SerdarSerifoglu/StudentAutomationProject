@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using StudentAutomationProject.BLL.Abstract;
 using StudentAutomationProject.Identity;
 using StudentAutomationProject.Models.Security;
 
@@ -14,11 +15,13 @@ namespace StudentAutomationProject.Controllers
         private readonly UserManager<SapIdentityUser> _userManager;
         private readonly SignInManager<SapIdentityUser> _signInManager;
         private readonly RoleManager<SapIdentityRole> _roleManager;
-        public SecurityController(UserManager<SapIdentityUser> userManager, SignInManager<SapIdentityUser> signInManager, RoleManager<SapIdentityRole> roleManager)
+        private readonly IPersonsService _personsService;
+        public SecurityController(UserManager<SapIdentityUser> userManager, SignInManager<SapIdentityUser> signInManager, RoleManager<SapIdentityRole> roleManager, IPersonsService personsService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _personsService = personsService;
         }
         public IActionResult Login()
         {
@@ -47,7 +50,7 @@ namespace StudentAutomationProject.Controllers
             if (result.Succeeded)
             {
                 //Yollanıcak Action yazılacak şimdilik boş
-                return RedirectToAction("Index","Department");
+                return RedirectToAction("Index", "Department");
             }
 
             ModelState.AddModelError(String.Empty, "Giriş Yapılamadı");
@@ -78,12 +81,19 @@ namespace StudentAutomationProject.Controllers
             {
                 return View(registerViewModel);
             }
-
+            var personData = _personsService.GetByTcNo(registerViewModel.TCNO);
+            if (personData == null)
+            {
+                ModelState.AddModelError("", "TC NO' eşleşen bir kişi bulunamadı.");
+                return View(registerViewModel);
+            }
             var user = new SapIdentityUser
             {
                 UserName = registerViewModel.Username,
                 Email = registerViewModel.Email,
-                Type = 1
+                //Persons tablosuna tip kolonu eklenip onunla eşleştirilebilir.
+                Type = 1,
+                PersonUID = personData.Uid
             };
 
             var result = await _userManager.CreateAsync(user, registerViewModel.Password);
@@ -177,7 +187,7 @@ namespace StudentAutomationProject.Controllers
 
             var user = await _userManager.FindByEmailAsync(resetPasswordViewModel.Email);
 
-            if(user == null)
+            if (user == null)
             {
                 throw new ApplicationException("Kullanıcı bulunamadı");
             }
