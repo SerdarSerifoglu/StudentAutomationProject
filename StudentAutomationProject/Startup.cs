@@ -66,7 +66,8 @@ namespace StudentAutomationProject
             services.AddScoped<IDepartmentPersonsDAL, EfDepartmentPersonsDAL>();
             services.AddScoped<IExamsService, ExamsManager>();
             services.AddScoped<IExamsDAL, EfExamsDAL>();
-
+            services.AddScoped<ICourseRegistrationService, CourseRegistrationManager>();
+            services.AddScoped<ICourseRegistrationDAL, EfCourseRegistrationDAL>();
 
 
 
