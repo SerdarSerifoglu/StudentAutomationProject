@@ -28,14 +28,14 @@ namespace StudentAutomationProject.Controllers
         [Authorize(Roles = "Teacher,StudentAffairs")]
         public IActionResult List()
         {
-            ViewBag.Layout = StaticMethods.LayoutPicker(CurrentUser.Type);
-            ViewBag.CurrentUserType = CurrentUser.Type;
+            ViewBagMethod();
             var list = _examsService.GetAll("CourseU");
             return View(list);
         }
         [Authorize(Roles = "Teacher")]
         public IActionResult Add()
         {
+            ViewBagMethod();
             return View();
         }
         [Authorize(Roles = "Teacher")]
@@ -54,6 +54,7 @@ namespace StudentAutomationProject.Controllers
         [Authorize(Roles = "StudentAffairs")]
         public IActionResult Edit(Guid uid)
         {
+            ViewBagMethod();
             var model = _examsService.GetByUID(uid);
             return View(model);
         }

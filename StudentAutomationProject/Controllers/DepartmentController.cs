@@ -12,6 +12,7 @@ using StudentAutomationProject.Identity;
 
 namespace StudentAutomationProject.Controllers
 {
+    [Authorize]
     public class DepartmentController : BaseController
     {
         private readonly IDepartmentsService _departmentsService;
@@ -23,18 +24,21 @@ namespace StudentAutomationProject.Controllers
         }
         public IActionResult Index()
         {
+            ViewBagMethod();
             var user = CurrentUser;
             return View(user);
         }
 
         public IActionResult List()
         {
+            ViewBagMethod();
             var list = _departmentsService.GetAll("Courses");
             return View(list);
         }
         
         public IActionResult Add()
         {
+            ViewBagMethod();
             return View();
         }
 
@@ -48,6 +52,7 @@ namespace StudentAutomationProject.Controllers
 
         public IActionResult Edit(Guid uid)
         {
+            ViewBagMethod();
             var data = _departmentsService.GetByUID(uid);
             return View(data);
         }

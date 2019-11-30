@@ -29,6 +29,7 @@ namespace StudentAutomationProject.Controllers
 
         public IActionResult CourseRegister()
         {
+            ViewBagMethod();
             var courseList = _departmentPersonsService.GetByPersonUID(CurrentUser.PersonUID ?? Guid.Empty).DepartmentU.Courses;
             var courseRegisterList = _courseRegistrationService.GetAllByStudentUID(CurrentUser.PersonUID ?? Guid.Empty);
             List<CourseRegisterViewModel> courseRegisterViewModels = new List<CourseRegisterViewModel>();

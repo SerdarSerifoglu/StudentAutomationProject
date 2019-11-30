@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using StudentAutomationProject.Core.Statics;
 using StudentAutomationProject.Identity;
 
 namespace StudentAutomationProject.Controllers
@@ -21,9 +22,12 @@ namespace StudentAutomationProject.Controllers
             _roleManager = roleManager;
         }
         protected SapIdentityUser CurrentUser => _userManager.FindByNameAsync(User.Identity.Name).Result;
-        //public SapIdentityUser CurrentUser()
-        //{
-        //    return _userManager.FindByNameAsync(User.Identity.Name).Result;
-        //        }
+        
+        protected void ViewBagMethod()
+        {
+            ViewBag.Layout = StaticMethods.LayoutPicker(CurrentUser.Type);
+            ViewBag.CurrentUserType = CurrentUser.Type;
+            @ViewBag.CurrentUsername = CurrentUser.UserName;
+        }
     }
 }

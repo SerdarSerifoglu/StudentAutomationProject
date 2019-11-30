@@ -14,7 +14,7 @@ using StudentAutomationProject.Models.Student;
 
 namespace StudentAutomationProject.Controllers
 {
-
+    [Authorize]
     public class StudentController : BaseController
     {
         private readonly IStudentsService _studentsService;
@@ -37,6 +37,7 @@ namespace StudentAutomationProject.Controllers
 
         public IActionResult List()
         {
+            ViewBagMethod();
             var list = _studentsService.GetDepartmentAndPersonDataList();
 
             return View(list);
@@ -44,6 +45,7 @@ namespace StudentAutomationProject.Controllers
 
         public IActionResult Add(int departmentId)
         {
+            ViewBagMethod();
             return View();
         }
 
@@ -63,6 +65,7 @@ namespace StudentAutomationProject.Controllers
 
         public IActionResult Edit(Guid uid)
         {
+            ViewBagMethod();
             var data = _personsService.GetByUID(uid);
             return View(data);
         }
@@ -78,6 +81,7 @@ namespace StudentAutomationProject.Controllers
         #region Bölüm Kayıt İşlemleri
         public IActionResult DepartmentAdd()
         {
+            ViewBagMethod();
             var list = _studentsService.GetListNotDepartmentList();
             return View(list);
         }
@@ -114,6 +118,7 @@ namespace StudentAutomationProject.Controllers
         
         public IActionResult SelectCourse()
         {
+            ViewBagMethod();
             return View(new StudentCourseDataModel());
         }
 

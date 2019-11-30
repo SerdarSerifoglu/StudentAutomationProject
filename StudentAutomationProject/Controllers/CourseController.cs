@@ -12,7 +12,7 @@ using StudentAutomationProject.Models.Course;
 
 namespace StudentAutomationProject.Controllers
 {
-   
+   [Authorize]
     public class CourseController : BaseController
     {
         private readonly ICoursesService _coursesService;
@@ -27,6 +27,7 @@ namespace StudentAutomationProject.Controllers
 
         public async Task<IActionResult> List(Guid departmentUID)
         {
+            ViewBagMethod();
             //test yapıldı
             CourseListViewModel viewModel = new CourseListViewModel()
             {
@@ -38,6 +39,7 @@ namespace StudentAutomationProject.Controllers
 
         public IActionResult Add(Guid departmentUID)
         {
+            ViewBagMethod();
             Courses model = new Courses()
             {
                 DepartmentUid = departmentUID
@@ -55,6 +57,7 @@ namespace StudentAutomationProject.Controllers
 
         public IActionResult Edit(Guid uid)
         {
+            ViewBagMethod();
             var data = _coursesService.GetByUID(uid);
             return View(data);
         }
