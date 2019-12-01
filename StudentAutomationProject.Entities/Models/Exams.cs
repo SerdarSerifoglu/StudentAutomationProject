@@ -17,6 +17,10 @@ namespace StudentAutomationProject.Entities.Models
         public DateTime? Date { get; set; }
         public string Name { get; set; }
         public int? Status { get; set; }
+        public DateTime? CreDate { get; set; }
+        public Guid? CreUserUid { get; set; }
+        public DateTime? ModDate { get; set; }
+        public Guid? ModUserUid { get; set; }
 
         public virtual Courses CourseU { get; set; }
         public virtual ICollection<ExamResults> ExamResults { get; set; }

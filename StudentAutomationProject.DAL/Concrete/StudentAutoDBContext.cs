@@ -182,14 +182,22 @@ namespace StudentAutomationProject.DAL.Concrete
 
                 entity.Property(e => e.CourseUid).HasColumnName("CourseUID");
 
+                entity.Property(e => e.CreDate).HasColumnType("datetime");
+
+                entity.Property(e => e.CreUserUid).HasColumnName("CreUserUID");
+
                 entity.Property(e => e.Date).HasColumnType("date");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.Name).HasMaxLength(50);
+                entity.Property(e => e.ModDate).HasColumnType("datetime");
 
+                entity.Property(e => e.ModUserUid).HasColumnName("ModUserUID");
+
+                entity.Property(e => e.Name).HasMaxLength(50);
+                
                 entity.HasOne(d => d.CourseU)
                     .WithMany(p => p.Exams)
                     .HasForeignKey(d => d.CourseUid)
@@ -201,7 +209,7 @@ namespace StudentAutomationProject.DAL.Concrete
                 entity.Property(p => p.Id)
                     .Metadata.AfterSaveBehavior = PropertySaveBehavior.Ignore;
             });
-            
+
             modelBuilder.Entity<Persons>(entity =>
             {
                 entity.HasKey(e => e.Uid);

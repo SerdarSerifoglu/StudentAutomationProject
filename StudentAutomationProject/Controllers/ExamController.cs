@@ -48,8 +48,12 @@ namespace StudentAutomationProject.Controllers
             }
             model.Uid = Guid.NewGuid();
             model.Status = 1;
+            model.CreDate = DateTime.Now;
+            model.CreUserUid = CurrentUser.PersonUID;
+            model.ModDate = DateTime.Now;
+            model.ModUserUid = CurrentUser.PersonUID;
             _examsService.Add(model);
-            return RedirectToAction();
+            return RedirectToAction("List");
         }
         [Authorize(Roles = "StudentAffairs")]
         public IActionResult Edit(Guid uid)

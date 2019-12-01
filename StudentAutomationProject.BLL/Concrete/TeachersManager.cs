@@ -17,7 +17,7 @@ namespace StudentAutomationProject.BLL.Concrete
             _teachersDAL = teachersDAL;
         }
 
-        public List<Teachers> GetAll(string inc)
+        public List<Teachers> GetAll(string inc=null)
         {
             return _teachersDAL.GetList(inc);
         }

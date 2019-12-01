@@ -9,7 +9,7 @@ namespace StudentAutomationProject.BLL.Abstract
 {
     public interface IStudentAffairsService
     {
-        List<StudentAffairs> GetAll(string inc);
+        List<StudentAffairs> GetAll(string inc=null);
         void Add(StudentAffairs studentAffair);
         void Update(StudentAffairs studentAffair);
         void Delete(Guid studentAffairUID);
