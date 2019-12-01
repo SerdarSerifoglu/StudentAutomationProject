@@ -15,17 +15,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="CourseUid" class="control-label"></label>
+                <label asp-for="CourseUid" class="control-label">Ders Seç</label>
                 <select asp-for="CourseUid" asp-items="@(new SelectList(string.Empty, "Uid", "Name"))" class="form-control col-md-8"></select>
                 <span asp-validation-for="CourseUid" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
+                <label asp-for="Date" class="control-label">Sınav Tarihi</label>
                 <input asp-for="Date" type="date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Sınav İsmi</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
@@ -37,7 +37,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Listeye Dön</a>
 </div>
 <script>
     

@@ -2,32 +2,28 @@
 @model CourseListViewModel
 
 @{
-    ViewData["Title"] = "List";
+    ViewData["Title"] = "Ders Listesi";
     Layout = ViewBag.Layout;
 }
 
-<h1>List</h1>
-
+<h4>Bölüm: @Model.Department.Name</h4>
 <p>
-    <a asp-action="Add" asp-route-departmentUID="@Model.DepartmentUID">Create New</a>
+    <a class="btn btn-primary btn-sm" asp-action="Add" asp-route-departmentUID="@Model.Department.Uid">Ders Ekle</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                UID
+                Id
             </th>
             <th>
-               ID
+                Ders ismi
             </th>
             <th>
-                DepartmentUid
+                Kontenjan
             </th>
             <th>
-                Name
-            </th>
-            <th>
-                Quota
+                Bölüm İsmi
             </th>
             <th></th>
         </tr>
@@ -36,13 +32,7 @@
 @foreach (var item in Model.Courses) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Uid)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartmentUid)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -51,7 +41,10 @@
                 @Html.DisplayFor(modelItem => item.Quota)
             </td>
             <td>
-                <a class="btn btn-info" href=" @Url.Action("Edit","Course",new{uid=item.Uid})">Edit</a>
+                @Model.Department.Name
+            </td>
+            <td>
+                <a class="btn btn-info" href=" @Url.Action("Edit","Course",new{uid=item.Uid})">Düzenle</a>
             </td>
         </tr>
 }

@@ -5,14 +5,17 @@
     Layout = ViewBag.Layout;
 }
 
-<p>
-    <a class="btn btn-primary btn-sm" asp-action="Add">Sınav Oluştur</a>
-</p>
+@if (ViewBag.CurrentUserType == 2)
+{
+    <p>
+        <a class="btn btn-primary btn-sm" asp-action="Add">Sınav Oluştur</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
             <th>
-               Id
+                Id
             </th>
             <th>
                 Ders
@@ -21,40 +24,41 @@
                 Sınav Tarihi
             </th>
             <th>
-               Sınav İsmi
+                Sınav İsmi
             </th>
             <th>
-               Durum
+                Durum
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseU.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            @if (ViewBag.CurrentUserType==1)
-            {
+        @foreach (var item in Model)
+        {
+            <tr>
                 <td>
-                    <a class="btn btn-info" href=" @Url.Action("Edit","Exam",new{uid=item.Uid})">Düzenle</a>
+                    @Html.DisplayFor(modelItem => item.Id)
                 </td>
-            }
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseU.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                @if (ViewBag.CurrentUserType == 1)
+                {
+                    <td>
+                        <a class="btn btn-info" href=" @Url.Action("Edit","Exam",new{uid=item.Uid})">Düzenle</a>
+                    </td>
+                }
 
-        </tr>
-}
+            </tr>
+        }
     </tbody>
 </table>

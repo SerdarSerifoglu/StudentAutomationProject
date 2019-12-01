@@ -8,7 +8,7 @@ namespace StudentAutomationProject.Models.Course
 {
     public class CourseListViewModel
     {
-        public Guid DepartmentUID { get; set; }
+        public Departments Department { get; set; }
         public List<Courses> Courses { get; set; }
     }
 }

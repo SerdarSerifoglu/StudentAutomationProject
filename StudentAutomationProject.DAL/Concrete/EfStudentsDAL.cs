@@ -20,7 +20,7 @@ namespace StudentAutomationProject.DAL.Concrete
                 return (List<Students>)(from s in context.Students
                                         join dp in context.DepartmentPerson on s.PersonUid equals dp.PersonUid
                                         where dp.DepartmentUid == departmentUID
-                                        select s).Include("PersonU").ToList();
+                                        select s).Include("PersonU").Include("DepartmentPerson.DepartmentU").ToList();
             }
         }
 

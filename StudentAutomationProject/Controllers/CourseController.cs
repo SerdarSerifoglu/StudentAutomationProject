@@ -16,9 +16,11 @@ namespace StudentAutomationProject.Controllers
     public class CourseController : BaseController
     {
         private readonly ICoursesService _coursesService;
-        public CourseController(UserManager<SapIdentityUser> userManager, ICoursesService coursesService) : base(userManager, null, null)
+        private readonly IDepartmentsService _departmentsService;
+        public CourseController(UserManager<SapIdentityUser> userManager, ICoursesService coursesService, IDepartmentsService departmentsService) : base(userManager, null, null)
         {
             _coursesService = coursesService;
+            _departmentsService = departmentsService;
         }
         public IActionResult Index()
         {
@@ -28,10 +30,11 @@ namespace StudentAutomationProject.Controllers
         public async Task<IActionResult> List(Guid departmentUID)
         {
             ViewBagMethod();
-            //test yapıldı
+            var departmentModel = _departmentsService.GetByUID(departmentUID);
+
             CourseListViewModel viewModel = new CourseListViewModel()
             {
-                DepartmentUID = departmentUID,
+                Department = departmentModel,
                 Courses = _coursesService.GetAll(departmentUID, "DepartmentU")
             };
             return View(viewModel);

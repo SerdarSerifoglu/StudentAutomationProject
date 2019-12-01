@@ -35,14 +35,19 @@ namespace StudentAutomationProject.Controllers
             return RedirectToAction("List");
         }
 
-        public IActionResult List()
+        public IActionResult List(Guid? departmentUID)
         {
             ViewBagMethod();
-            var list = _studentsService.GetDepartmentAndPersonDataList();
+            List<Students> list = new List<Students>();
 
+            if (departmentUID == null)
+                list = _studentsService.GetDepartmentAndPersonDataList();
+            else
+                list = _studentsService.GetAllDepartmentStudent(departmentUID);
+            
             return View(list);
         }
-
+        
         public IActionResult Add(int departmentId)
         {
             ViewBagMethod();
@@ -111,37 +116,6 @@ namespace StudentAutomationProject.Controllers
             list.Insert(0, new Departments() { Uid = Guid.Empty, Name = "Bölüm Seçiniz" });
             return Json(new SelectList(list, "Uid", "Name"));
         }
-        #endregion
-
-        #region Ders Kayıt İşlemleri
-        //Komple kaldırılabilir Öğrenci Kayıt yapıcak şekilde yapabilirim bakılacak
-        
-        public IActionResult SelectCourse()
-        {
-            ViewBagMethod();
-            return View(new StudentCourseDataModel());
-        }
-
-        //public IActionResult CourseAdd(string courseUID)
-        //{
-        //    var list = _studentsService.GetListNotCourseList(Guid.Empty);
-        //    return View(list);
-        //}
-        [HttpPost]
-        public JsonResult JsonCourseAdd([FromBody]StudentCourseDataModel model)
-        {
-            var list = _studentsService.GetListNotCourseList(Guid.Parse(model.CourseUID));
-            return Json(new { Success = true, List = list });
-        }
-
-        public IActionResult JsonCourseAdd()
-        {
-            var list = _studentsService.GetListNotCourseList(Guid.Empty);
-            return View(list);
-        }
-
-
-
 
         public JsonResult ListCourseCombo(string departmentUID)
         {
