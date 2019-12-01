@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StudentAutomationProject.BLL.Abstract;
@@ -10,6 +11,7 @@ using StudentAutomationProject.Identity;
 
 namespace StudentAutomationProject.Controllers
 {
+    [Authorize]
     public class StudentAffairsController : BaseController
     {
         private readonly IStudentAffairsService _studentAffairsService;
@@ -20,26 +22,26 @@ namespace StudentAutomationProject.Controllers
             _personsService = personsService;
         }
 
-        //[Authorize(Roles = "StudentAffairs")]
+        [Authorize(Roles = "StudentAffairs")]
         public IActionResult Index()
         {
             return RedirectToAction("List");
         }
-        //[Authorize(Roles = "StudentAffairs")]
+        [Authorize(Roles = "StudentAffairs")]
         public IActionResult List()
         {
-            //ViewBagMethod();
+            ViewBagMethod();
             var list = _studentAffairsService.GetAll("PersonU");
 
             return View(list);
         }
-        //[Authorize(Roles = "StudentAffairs")]
+        [Authorize(Roles = "StudentAffairs")]
         public IActionResult Add(int departmentId)
         {
-            //ViewBagMethod();
+            ViewBagMethod();
             return View();
         }
-        //[Authorize(Roles = "StudentAffairs")]
+        [Authorize(Roles = "StudentAffairs")]
         [HttpPost]
         public IActionResult Add(Persons model)
         {
@@ -51,16 +53,15 @@ namespace StudentAutomationProject.Controllers
             _personsService.Add(model);
             _studentAffairsService.Add(new StudentAffairs() { PersonUid = model.Uid });
             return RedirectToAction("List");
-            //return RedirectToAction("List", new { departmentId = model.DepartmentId });
         }
-        //[Authorize(Roles = "StudentAffairs")]
+        [Authorize(Roles = "StudentAffairs")]
         public IActionResult Edit(Guid uid)
         {
-            //ViewBagMethod();
+            ViewBagMethod();
             var data = _personsService.GetByUID(uid);
             return View(data);
         }
-
+        [Authorize(Roles = "StudentAffairs")]
         [HttpPost]
         public IActionResult Edit(Persons model)
         {

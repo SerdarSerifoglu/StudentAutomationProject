@@ -52,7 +52,6 @@ namespace StudentAutomationProject.Controllers
             _personsService.Add(model);
             _teachersService.Add(new Teachers() { PersonUid = model.Uid });
             return RedirectToAction("List");
-            //return RedirectToAction("List", new { departmentId = model.DepartmentId });
         }
         [Authorize(Roles = "StudentAffairs,Teachers")]
         public IActionResult Edit(Guid uid)
