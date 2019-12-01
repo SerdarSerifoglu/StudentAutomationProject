@@ -1,0 +1,62 @@
+﻿@model IEnumerable<StudentAutomationProject.Entities.Models.Students>
+
+@{
+    ViewData["Title"] = "Öğrenciler Listesi";
+    Layout = ViewBag.Layout;
+}
+
+<p>
+    <a class="btn btn-primary btn-sm"  asp-action="Add">Öğrenci Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Id
+            </th>
+            <th>
+               FirstName
+            </th>
+            <th>
+               LastName
+            </th>
+            <th>
+                Bölüm
+            </th>
+            <th>
+               TcNo
+            </th>
+            <th>
+               Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentPerson.FirstOrDefault().DepartmentU.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.TcNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.Status)
+            </td>
+            <td>
+                <a class="btn btn-info" href=" @Url.Action("Edit","Student",new{uid=item.PersonUid})">Düzenle</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<StudentAutomationProject.Entities.Models.Departments>
+
+@{
+    ViewData["Title"] = "Bölüm Listesi";
+    Layout = ViewBag.Layout;
+}
+
+<p>
+    <a class="btn btn-primary btn-sm"  asp-action="Add">Bölüm Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Uid)
+            </th>*@
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th scope="col">Düzenle</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Uid)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a class="btn btn-info" href=" @Url.Action("Edit","Department",new{uid=item.Uid})">Düzenle</a>
+            </td>
+            <td>
+                <a class="btn btn-info" href=" @Url.Action("List","Course",new{departmentUID=item.Uid})">Ders Listesi</a>
+            </td>
+            <td>
+            <a class="btn btn-info" href=" @Url.Action("List","Student",new{departmentUID=item.Uid})">Öğrenci Listesi</a>
+        </td>
+        </tr>
+}
+    </tbody>
+</table>

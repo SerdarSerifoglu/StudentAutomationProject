@@ -1,0 +1,92 @@
+﻿@using StudentAutomationProject.Models.Student
+@model IEnumerable<StudentAutomationProject.Entities.Models.Students>
+
+@{
+    ViewData["Title"] = "Bölüm Kayıt Ekranı";
+    Layout = ViewBag.Layout;
+}
+<label>Bölüm Seç</label>
+<select id="DepartmentUID" asp-items="@(new SelectList(string.Empty, "Uid", "Name"))" class="form-control col-md-8"></select>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Seç
+            </th>
+            <th>
+                Id
+            </th>
+            <th>
+                İsim
+            </th>
+            <th>
+                Soyisim
+            </th>
+            <th>
+                TcNo
+            </th>
+            <th>
+                Durum
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" value="@item.PersonUid" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonU.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonU.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonU.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonU.TcNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonU.Status)
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<button class="btn btn-info" onclick="Gonder()">Kaydet</button>
+<script>
+    var jsModel = @Html.Raw(Json.Serialize(new StudentDataModel()));
+
+
+    var url = '@Url.Content("/")' + "Student/ListDepartmentCombo";
+    getJSONforComboBox(url, null, "#DepartmentUID", null);
+
+
+    function Gonder() {
+        var searchIDs = $('input:checked').map(function () {
+            return $(this).val();
+        });
+        jsModel.Dizi = searchIDs.get();
+        jsModel.DepartmentUID = $("#DepartmentUID").val();
+
+        if (jsModel.DepartmentUID == "00000000-0000-0000-0000-000000000000") {
+            alert("Bölüm boş bırakılamaz!");
+            return;
+        }
+        if (jsModel.Dizi == 0) {
+            alert("Öğrenci seçmediniz!");
+            return;
+        }
+        post("/Student/JsonDepartmentAdd", jsModel, function (e) {
+            if (e.Success === true) {
+                alert("Kaydedildi");
+            };
+        });
+    }
+</script>

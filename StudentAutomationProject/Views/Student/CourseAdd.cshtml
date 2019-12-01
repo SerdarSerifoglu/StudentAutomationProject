@@ -1,0 +1,70 @@
+﻿@model IEnumerable<StudentAutomationProject.Entities.Models.Students>
+
+@{
+    ViewData["Title"] = "Ders Kayıt";
+    Layout = "~/Views/_StudentAffairsLayout.cshtml";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Uid
+            </th>
+            <th>
+               Id
+            </th>
+            <th>
+               FirstName
+            </th>
+            <th>
+               LastName
+            </th>
+            <th>
+               TcNo
+            </th>
+            <th>
+               Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonUid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.TcNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.Status)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
+<script>
+     var url = '@Url.Content("/")' + "Student/ListDepartmentCombo";
+    getJSONforComboBox(url, null, "#DepartmentUID", null);
+
+     $(function () {
+         $("#DepartmentUID").change(function () {
+             var url = '@Url.Content("/")' + "Student/ListCourseCombo";
+             var sendData = { departmentUID: $("#DepartmentUID").val() };
+             getJSONforComboBox(url, sendData, "#CourseUID");
+        });
+    });
+</script>

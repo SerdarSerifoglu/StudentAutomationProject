@@ -1,0 +1,47 @@
+﻿@using StudentAutomationProject.Models.Student
+@model StudentCourseDataModel
+@{
+    ViewData["Title"] = "SelectCourse";
+    Layout = "~/Views/_StudentAffairsLayout.cshtml";
+}
+
+<h1>SelectCourse</h1>
+
+<label>Bölüm Seç</label>
+<select id="DepartmentUID" asp-items="@(new SelectList(string.Empty, "Uid", "Name"))" class="form-control col-md-8"></select>
+<select id="CourseUID" asp-items="@(new SelectList(string.Empty, "Uid", "Name"))" class="form-control col-md-8"></select>
+<button onclick="listele()"></button>
+<script>
+    var jsModel = @Html.Raw(Json.Serialize(@Model));
+
+     var url = '@Url.Content("/")' + "Student/ListDepartmentCombo";
+    getJSONforComboBox(url, null, "#DepartmentUID", null);
+
+     $(function () {
+         $("#DepartmentUID").change(function () {
+             var url = '@Url.Content("/")' + "Student/ListCourseCombo";
+             var sendData = { departmentUID: $("#DepartmentUID").val() };
+             getJSONforComboBox(url, sendData, "#CourseUID");
+        });
+     });
+
+    function listele() {
+        //jsModel.DepartmentUID = $("#DepartmentUID").val();
+        //jsModel.CourseUID = $("#CourseUID").val();
+        debugger
+     jsModel.CourseUID = $("#CourseUID").val();
+
+
+        post("/Student/JsonCourseAdd", jsModel, function (e) {
+            if (e.Success === true) {
+                debugger
+                var serdar = e.List;
+                $.each(serdar, function (index, value) {
+                    console.log(index + ": " + value);
+                });
+                
+            };
+        });
+    }
+
+</script>

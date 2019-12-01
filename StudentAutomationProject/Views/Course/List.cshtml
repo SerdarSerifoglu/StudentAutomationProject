@@ -1,0 +1,59 @@
+﻿@using StudentAutomationProject.Models.Course
+@model CourseListViewModel
+
+@{
+    ViewData["Title"] = "List";
+    Layout = ViewBag.Layout;
+}
+
+<h1>List</h1>
+
+<p>
+    <a asp-action="Add" asp-route-departmentUID="@Model.DepartmentUID">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                UID
+            </th>
+            <th>
+               ID
+            </th>
+            <th>
+                DepartmentUid
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Quota
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Courses) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentUid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quota)
+            </td>
+            <td>
+                <a class="btn btn-info" href=" @Url.Action("Edit","Course",new{uid=item.Uid})">Edit</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

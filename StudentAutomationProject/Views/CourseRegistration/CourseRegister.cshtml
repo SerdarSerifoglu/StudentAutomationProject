@@ -1,0 +1,22 @@
+﻿@using StudentAutomationProject.Models.CourseRegistration
+@model List<CourseRegisterViewModel>
+@{
+    ViewData["Title"] = "CourseRegister";
+    Layout = ViewBag.Layout;
+}
+
+<h1>CourseRegister</h1>
+<form asp-controller="CourseRegistration" asp-action="CourseRegister" method="post">
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <div class="row">
+            <input asp-for="@Model[i].Exist" type="checkbox" />
+            <label asp-for="@Model[i].CourseUID">@Model[i].CourseName</label>
+            <input asp-for="@Model[i].CourseName" type="hidden" />
+            <input asp-for="@Model[i].CourseUID" type="hidden" />
+        </div>
+    }
+    <input class="btn btn-success" type="submit" value="Ders Kaydet" />
+</form>
+
+

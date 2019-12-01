@@ -1,0 +1,64 @@
+﻿@model IEnumerable<StudentAutomationProject.Entities.Models.StudentAffairs>
+
+@{
+    ViewData["Title"] = "Öğrenci İşleri Personel Listesi";
+    Layout = ViewBag.Layout;
+}
+
+<h1>List</h1>
+
+<p>
+    <a asp-action="Add">Öğrenci İşleri Personel Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                FirstName
+            </th>
+            <th>
+                LastName
+            </th>
+            <th>
+                Bölüm
+            </th>
+            <th>
+                TcNo
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.Uid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.TcNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonU.Status)
+            </td>
+            <td>
+                <a class="btn btn-info" href=" @Url.Action("Edit","StudentAffairs",new{uid=item.PersonUid})">Düzenle</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
