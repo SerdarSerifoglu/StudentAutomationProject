@@ -5,31 +5,26 @@
     Layout = ViewBag.Layout;
 }
 
-<h1>List</h1>
-
 <p>
-    <a asp-action="Add">Sınav Oluştur</a>
+    <a class="btn btn-primary btn-sm" asp-action="Add">Sınav Oluştur</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Uid)
+               Id
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                Ders
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CourseUid)
+                Sınav Tarihi
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+               Sınav İsmi
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
+               Durum
             </th>
             <th></th>
         </tr>
@@ -37,9 +32,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Uid)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
             </td>

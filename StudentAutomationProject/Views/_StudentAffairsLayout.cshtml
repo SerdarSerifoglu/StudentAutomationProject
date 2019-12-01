@@ -18,6 +18,7 @@
             border-bottom: 1px solid #808080;
             border-right: 1px solid #808080;
             color: black;
+            font-weight: bold;
         }
 
             .leftMenuPart:hover {
@@ -65,7 +66,37 @@
                     </a>
                     <a href="@Url.Action("Add","Student")">
                         <div class="row leftMenuPart">
-                            Öğrenci Kayıt
+                            Öğrenci Ekle
+                        </div>
+                    </a>
+                    <a href="@Url.Action("List","Teacher")">
+                        <div class="row leftMenuPart">
+                            Öğretmen Listesi
+                        </div>
+                    </a>
+                    <a href="@Url.Action("Add","Teacher")">
+                        <div class="row leftMenuPart">
+                            Öğretmen Ekle
+                        </div>
+                    </a>
+                    <a href="@Url.Action("List","StudentAffairs")">
+                        <div class="row leftMenuPart">
+                            Ö.İşleri Personel Listesi
+                        </div>
+                    </a>
+                    <a href="@Url.Action("Add","StudentAffairs")">
+                        <div class="row leftMenuPart">
+                            Ö.İşleri Personel Ekle
+                        </div>
+                    </a>
+                    <a href="@Url.Action("List","Department")">
+                        <div class="row leftMenuPart">
+                            Bölümler
+                        </div>
+                    </a>
+                    <a href="@Url.Action("Add","Department")">
+                        <div class="row leftMenuPart">
+                            Bölüm Ekle
                         </div>
                     </a>
                     <a href="@Url.Action("DepartmentAdd","Student")">

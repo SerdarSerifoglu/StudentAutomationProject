@@ -105,8 +105,7 @@ namespace StudentAutomationProject.Controllers
                 var callBackUrl = Url.Action("ConfirmEmail", "Security", new { userId = user.Id, code = confirmationCode.Result });
 
                 //Mail yollanıcak
-
-                //yönlendirilecek action yazılacak
+                
                 return RedirectToAction("Login");
             }
 

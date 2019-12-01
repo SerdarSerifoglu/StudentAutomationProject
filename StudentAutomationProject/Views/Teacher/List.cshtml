@@ -4,11 +4,8 @@
     ViewData["Title"] = "Öğretmenler Listesi";
     Layout = ViewBag.Layout;
 }
-
-<h1>List</h1>
-
 <p>
-    <a asp-action="Add">Öğretmen Ekle</a>
+    <a class="btn btn-primary btn-sm" asp-action="Add">Öğretmen Ekle</a>
 </p>
 <table class="table">
     <thead>
@@ -17,10 +14,10 @@
                 Id
             </th>
             <th>
-                FirstName
+                İsim
             </th>
             <th>
-                LastName
+                Soyisim
             </th>
             <th>
                 Bölüm
@@ -29,7 +26,7 @@
                 TcNo
             </th>
             <th>
-                Status
+                Durum
             </th>
             <th></th>
         </tr>
