@@ -27,6 +27,13 @@ namespace StudentAutomationProject.Controllers
             return View();
         }
 
+        public IActionResult MyCourses()
+        {
+            ViewBagMethod();
+            var list = _courseRegistrationService.GetAllByStudentUID(CurrentUser.PersonUID ?? Guid.Empty);
+            return View(list);
+        }
+
         public IActionResult CourseRegister()
         {
             ViewBagMethod();

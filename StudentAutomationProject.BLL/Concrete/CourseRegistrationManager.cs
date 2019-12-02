@@ -52,7 +52,7 @@ namespace StudentAutomationProject.BLL.Concrete
         }
         public List<CourseRegistration> GetAllByStudentUID(Guid studentUID)
         {
-            return _courseRegistrationDAL.GetList(null, x => x.StudentUid == studentUID);
+            return _courseRegistrationDAL.GetList("CourseU", x => x.StudentUid == studentUID);
         }
     }
 }
