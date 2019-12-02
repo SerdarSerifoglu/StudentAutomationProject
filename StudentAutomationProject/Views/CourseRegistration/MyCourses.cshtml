@@ -1,0 +1,32 @@
+﻿@model IEnumerable<StudentAutomationProject.Entities.Models.CourseRegistration>
+
+@{
+    ViewData["Title"] = "Derslerim";
+    Layout = ViewBag.Layout;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Ders İsim
+            </th>
+            <th>
+                Durum
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseU.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
