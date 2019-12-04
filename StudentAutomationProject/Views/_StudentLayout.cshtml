@@ -31,37 +31,38 @@
         }
 
         .topBar {
-            padding: 10px 10px 10px 10px;
+            padding: 10px 0 10px 0;
             border-bottom: 1px solid #808080;
         }
 
         #renderBody {
             padding-top: 10px;
         }
+
+        .topCenterBar {
+            border-right: 1px solid #808080;
+        }
     </style>
 </head>
 
 <body>
     <div class="container-fluid">
-        <div class="row topBar" style="background-color:red;">
+        <div class="row topBar">
             <div class="col-md-2 col-lg-2 topLeftBar">
                 <div class="logo text-center">
                     Öğrenci Panel
                 </div>
             </div>
-            <div class="col-md-8 col-lg-8" style="background-color:pink;">
-                <h4 class="text-center">@ViewBag.Title</h4>
+            <div class="col-md-8 col-lg-8 topCenterBar">
+                <h4 class="text-center" style="margin-top:5px!important;">@ViewBag.Title</h4>
             </div>
-            <div class="col-md-2 col-lg-2" style="background-color:yellow;">
-                <h5 class="text-center">@ViewBag.CurrentUsername</h5>
+            <div class="col-md-2 col-lg-2">
+                <h6 class="text-center" style="margin-top:8px!important;">@ViewBag.CurrentUsername</h6>
             </div>
         </div>
         <div class="row">
             <div class="col-md-2 col-lg-2 leftBar">
                 <div class="leftMenu">
-                    <div class="row leftMenuPart">
-                        Bilgilerim
-                    </div>
                     <a href="@Url.Action("CourseRegister","CourseRegistration")">
                         <div class="row leftMenuPart">
                             Ders Kayıt
@@ -75,6 +76,11 @@
                     <div class="row leftMenuPart">
                         Notlarım
                     </div>
+                    <a href="@Url.Action("Logout","Security")">
+                        <div class="row leftMenuPart">
+                           Çıkış Yap
+                        </div>
+                    </a>
                 </div>
             </div>
             <div id="renderBody" class="col-md-10 col-lg-10">

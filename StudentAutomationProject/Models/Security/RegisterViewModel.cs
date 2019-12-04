@@ -8,20 +8,20 @@ namespace StudentAutomationProject.Models.Security
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Kullanıcı Adı Girmediniz")]
         public string Username { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Şifre Girmediniz")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Şifre Onay Girmediniz")]
         [DataType(DataType.Password)]
         public string ConfirmedPassword { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Mail Adresi Girmediniz")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
         public int Type { get; set; }
-        [Required]
+        [Required(ErrorMessage = "TC No Girmediniz")]
         public string TCNO { get; set; }
     }
 }

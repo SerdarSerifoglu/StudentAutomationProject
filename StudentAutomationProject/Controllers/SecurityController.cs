@@ -60,8 +60,7 @@ namespace StudentAutomationProject.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            //Yollanıcak Action yazılacak şimdilik boş
-            return RedirectToAction();
+            return RedirectToAction("Login");
         }
 
         public IActionResult AccessDenied()

@@ -11,12 +11,23 @@
     <title>Giriş Ekranı</title>
 </head>
 <body>
-    <h3>Giris Yap</h3>
+    <br />
+    <h2>ÖĞRENCİ OTOMASYONU</h2>
+    <br />
+    <h4>Kullanıcı Giriş Ekranı</h4>
+    <br />
     <form asp-controller="Security" asp-action="Login" method="post">
         <div asp-validation-summary="All"></div>
-        <input type="text" asp-for="Username" placeholder="Kullanıcı Adı" /><br />
-        <input type="password" asp-for="Password" placeholder="Şifre" /><br />
-        <input type="submit" value="Giriş Yap" /><br />
+        <input type="text" asp-for="Username" class="fadeIn second" placeholder="Kullanıcı Adı" /><br />
+        <input type="password" asp-for="Password" class="fadeIn third" placeholder="Şifre" /><br />
+        <br />
+        <input type="submit" class="fadeIn fourth" value="Giriş Yap" /><br />
+        <br />
+        <a href="@Url.Action("Register","Security")">
+            <div style="font-size:14px">
+                Kullanıcınız Yoksa Kayıt Oluşturmak İçin Tıklayınız.
+            </div>
+        </a>
     </form>
 </body>
 </html>
