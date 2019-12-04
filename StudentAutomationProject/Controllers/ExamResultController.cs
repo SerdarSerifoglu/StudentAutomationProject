@@ -27,6 +27,13 @@ namespace StudentAutomationProject.Controllers
             return View();
         }
 
+        public IActionResult List(Guid examUID)
+        {
+            TempData["ExamUID"] = examUID;
+            var examResultsList = _examResultsService.GetByExamUID("PersonU.PersonU", examUID);
+            return View(examResultsList);
+        }
+
         public IActionResult Add(Guid courseUID, Guid examUID)
         {
             var list = _courseRegistrationService.GetAllStudentList(courseUID, "StudentU.PersonU");
@@ -41,7 +48,6 @@ namespace StudentAutomationProject.Controllers
                 examResultViewModels.Add(model);
             }
             TempData["ExamUID"] = examUID;
-            TempData["CourseUID"] = courseUID;
             return View(examResultViewModels);
         }
 
@@ -49,7 +55,6 @@ namespace StudentAutomationProject.Controllers
         public IActionResult Add(List<ExamResultViewModel> examResultViewModels)
         {
             var examUID = Convert.ToString(TempData["ExamUID"]);
-            var courseUID = Convert.ToString(TempData["ExamUID"]);
             var resultList = _examResultsService.GetByExamUID(null, Guid.Parse(examUID));
             foreach (var item in examResultViewModels)
             {
@@ -64,7 +69,7 @@ namespace StudentAutomationProject.Controllers
                     });
                 }
             }
-            return View(examResultViewModels);
+            return RedirectToAction("List", new { examUID = examUID });
         }
 
         public IActionResult Edit(Guid examUID)
