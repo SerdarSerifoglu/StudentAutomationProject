@@ -22,11 +22,8 @@ namespace StudentAutomationProject.Controllers
             _coursesService = coursesService;
             _departmentsService = departmentsService;
         }
-        public IActionResult Index()
-        {
-            return RedirectToAction("List");
-        }
-
+      
+        [Authorize(Roles = "Teacher,StudentAffairs")]
         public async Task<IActionResult> List(Guid departmentUID)
         {
             ViewBagMethod();
@@ -39,7 +36,7 @@ namespace StudentAutomationProject.Controllers
             };
             return View(viewModel);
         }
-
+        [Authorize(Roles = "StudentAffairs")]
         public IActionResult Add(Guid departmentUID)
         {
             ViewBagMethod();
@@ -49,7 +46,7 @@ namespace StudentAutomationProject.Controllers
             };
             return View(model);
         }
-
+        [Authorize(Roles = "StudentAffairs")]
         [HttpPost]
         public IActionResult Add(Courses model)
         {
@@ -57,14 +54,14 @@ namespace StudentAutomationProject.Controllers
             _coursesService.Add(model);
             return RedirectToAction("List",new { departmentUID = model.DepartmentUid });
         }
-
+        [Authorize(Roles = "StudentAffairs")]
         public IActionResult Edit(Guid uid)
         {
             ViewBagMethod();
             var data = _coursesService.GetByUID(uid);
             return View(data);
         }
-
+        [Authorize(Roles = "StudentAffairs")]
         [HttpPost]
         public IActionResult Edit(Courses model)
         {

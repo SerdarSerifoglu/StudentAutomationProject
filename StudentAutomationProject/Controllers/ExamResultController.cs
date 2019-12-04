@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StudentAutomationProject.BLL.Abstract;
@@ -11,6 +12,7 @@ using StudentAutomationProject.Models.ExamResult;
 
 namespace StudentAutomationProject.Controllers
 {
+    [Authorize]
     public class ExamResultController : BaseController
     {
         private readonly IExamResultsService _examResultsService;
@@ -26,16 +28,18 @@ namespace StudentAutomationProject.Controllers
         {
             return View();
         }
-
+        [Authorize(Roles = "Teacher,StudentAffairs")]
         public IActionResult List(Guid examUID)
         {
+            ViewBagMethod();
             TempData["ExamUID"] = examUID;
             var examResultsList = _examResultsService.GetByExamUID("PersonU.PersonU", examUID);
             return View(examResultsList);
         }
-
+        [Authorize(Roles = "Teacher")]
         public IActionResult Add(Guid courseUID, Guid examUID)
         {
+            ViewBagMethod();
             var list = _courseRegistrationService.GetAllStudentList(courseUID, "StudentU.PersonU");
             List<ExamResultViewModel> examResultViewModels = new List<ExamResultViewModel>();
             foreach (var item in list)
@@ -50,7 +54,7 @@ namespace StudentAutomationProject.Controllers
             TempData["ExamUID"] = examUID;
             return View(examResultViewModels);
         }
-
+        [Authorize(Roles = "Teacher")]
         [HttpPost]
         public IActionResult Add(List<ExamResultViewModel> examResultViewModels)
         {
@@ -71,13 +75,15 @@ namespace StudentAutomationProject.Controllers
             }
             return RedirectToAction("List", new { examUID = examUID });
         }
-
+        [Authorize(Roles = "StudentAffairs")]
         public IActionResult Edit(Guid examUID)
         {
+            ViewBagMethod();
             TempData["ExamUID"] = examUID;
             var examResultsList = _examResultsService.GetByExamUID("PersonU.PersonU", examUID);
             return View(examResultsList);
         }
+        [Authorize(Roles = "StudentAffairs")]
         [HttpPost]
         public IActionResult Edit(List<ExamResults> examResultList)
         {
@@ -90,7 +96,7 @@ namespace StudentAutomationProject.Controllers
                     _examResultsService.Update(item);
                 }
             }
-            return View(examResultList);
+            return RedirectToAction("List", new { examUID = examUID });
         }
     }
 }

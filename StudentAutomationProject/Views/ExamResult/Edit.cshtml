@@ -1,23 +1,18 @@
 ﻿@model List<StudentAutomationProject.Entities.Models.ExamResults>
 
 @{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/_StudentAffairsLayout.cshtml";
+    ViewData["Title"] = "Sınav Sonuçlarını Düzenle";
+    Layout = ViewBag.Layout;
 }
 
-<h1>Edit</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-
+                İsim
             </th>
             <th>
-
+                Not
             </th>
             <th>
 
@@ -41,8 +36,6 @@
             <tr>
                 <td>
                     @Model[i].PersonU.PersonU.FirstName
-                </td>
-                <td>
                     @Model[i].PersonU.PersonU.LastName
                 </td>
                 <td>
@@ -60,7 +53,7 @@
         <tfoot>
             <tr>
                 <td><input class="btn btn-success" type="submit" value="Notları Kaydet" /></td>
-
+                <td></td>
             </tr>
         </tfoot>
     </form>

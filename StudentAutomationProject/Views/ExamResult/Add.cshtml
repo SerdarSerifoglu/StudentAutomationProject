@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Sınav Sonucu Gir";
-    Layout = "~/Views/_StudentAffairsLayout.cshtml";
+    Layout = ViewBag.Layout;
 }
 <style>
     .form-control{
@@ -10,28 +10,11 @@
     }
 </style>
 
-@*<form asp-controller="ExamResult" asp-action="Add" method="post">
-    @for (int i = 0; i < Model.Count(); i++)
-    {
-    <div class="form-control">
-        <label>@Model[i].PersonName</label>
-        <input asp-for="@Model[i].Grade" />
-        <input asp-for="@Model[i].PersonUID" type="hidden" />
-        <input asp-for="@Model[i].ExamUID" type="hidden" />
-    </div>
-    }
-    <br />
-    <input class="btn btn-success" type="submit" value="Notları Kaydet" />
-</form>*@
-
 <table class="table">
     <thead>
         <tr>
             <th>
                 İsim
-            </th>
-            <th>
-                Soyisim
             </th>
             <th>
                 Not
@@ -49,8 +32,6 @@
             <tr>
                 <td>
                     @Model[i].PersonName
-                </td>
-                <td>
                     @Model[i].PersonLastName
                 </td>
                 <td>
@@ -64,6 +45,7 @@
         <tfoot>
             <tr>
                 <td><input class="btn btn-success" type="submit" value="Notları Kaydet" /></td>
+                <td></td>
             </tr>
         </tfoot>
     </form>

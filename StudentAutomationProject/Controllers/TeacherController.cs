@@ -53,14 +53,14 @@ namespace StudentAutomationProject.Controllers
             _teachersService.Add(new Teachers() { PersonUid = model.Uid });
             return RedirectToAction("List");
         }
-        [Authorize(Roles = "StudentAffairs,Teachers")]
+        [Authorize(Roles = "StudentAffairs,Teacher"]
         public IActionResult Edit(Guid uid)
         {
             ViewBagMethod();
             var data = _personsService.GetByUID(uid);
             return View(data);
         }
-
+        [Authorize(Roles = "StudentAffairs,Teacher"]
         [HttpPost]
         public IActionResult Edit(Persons model)
         {

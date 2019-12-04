@@ -34,7 +34,7 @@ namespace StudentAutomationProject.Controllers
         {
             return RedirectToAction("List");
         }
-
+        [Authorize(Roles = "StudentAffairs")]
         public IActionResult List(Guid? departmentUID)
         {
             ViewBagMethod();
@@ -47,13 +47,13 @@ namespace StudentAutomationProject.Controllers
             
             return View(list);
         }
-        
+        [Authorize(Roles = "StudentAffairs")]
         public IActionResult Add(int departmentId)
         {
             ViewBagMethod();
             return View();
         }
-
+        [Authorize(Roles = "StudentAffairs")]
         [HttpPost]
         public IActionResult Add(Persons model)
         {
@@ -67,14 +67,14 @@ namespace StudentAutomationProject.Controllers
             return RedirectToAction("List");
             //return RedirectToAction("List", new { departmentId = model.DepartmentId });
         }
-
+        [Authorize(Roles = "Student,StudentAffairs")]
         public IActionResult Edit(Guid uid)
         {
             ViewBagMethod();
             var data = _personsService.GetByUID(uid);
             return View(data);
         }
-
+        [Authorize(Roles = "Student,StudentAffairs")]
         [HttpPost]
         public IActionResult Edit(Persons model)
         {

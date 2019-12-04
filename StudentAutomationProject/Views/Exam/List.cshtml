@@ -51,18 +51,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
-                @if (ViewBag.CurrentUserType == 1)
-                {
-                    <td>
-                        <a class="btn btn-info" href=" @Url.Action("Edit","Exam",new{uid=item.Uid})">Düzenle</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-info" href=" @Url.Action("Add","ExamResult",new{courseUID=item.CourseUid, examUID = item.Uid})">Sınav Sonucu Gir</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-info" href=" @Url.Action("Edit","ExamResult",new{examUID = item.Uid})">Sınav Sonucu Düzenle</a>
-                    </td>
-                }
+                <td>
+                    @if (ViewBag.CurrentUserType == 2)
+                    {
+                        <a class="btn btn-info" href=" @Url.Action("Edit", "Exam", new { uid = item.Uid })">Düzenle</a>
+                        @if (item.Date<=DateTime.Now)
+                        {
+                            <a class="btn btn-warning" href=" @Url.Action("Add","ExamResult",new{courseUID=item.CourseUid, examUID = item.Uid})">Sınav Sonucu Gir</a>
+                        }
+                    }
+                    @if (ViewBag.CurrentUserType == 1)
+                    {
+                        <a class="btn btn-secondary" href=" @Url.Action("Edit", "ExamResult", new { examUID = item.Uid })">Sınav Sonucu Düzenle</a>
+                    }
+                </td>
 
             </tr>
         }

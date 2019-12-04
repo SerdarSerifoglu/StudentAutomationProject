@@ -63,14 +63,14 @@ namespace StudentAutomationProject.Controllers
             _examsService.Add(model);
             return RedirectToAction("List");
         }
-        [Authorize(Roles = "StudentAffairs")]
+        [Authorize(Roles = "Teacher,StudentAffairs")]
         public IActionResult Edit(Guid uid)
         {
             ViewBagMethod();
             var model = _examsService.GetByUID(uid);
             return View(model);
         }
-        [Authorize(Roles = "StudentAffairs")]
+        [Authorize(Roles = "Teacher,StudentAffairs")]
         [HttpPost]
         public IActionResult Edit(Exams model)
         {

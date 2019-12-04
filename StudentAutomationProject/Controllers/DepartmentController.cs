@@ -28,20 +28,20 @@ namespace StudentAutomationProject.Controllers
             var user = CurrentUser;
             return View(user);
         }
-
+        [Authorize(Roles = "Teacher,StudentAffairs")]
         public IActionResult List()
         {
             ViewBagMethod();
             var list = _departmentsService.GetAll("Courses");
             return View(list);
         }
-        
+        [Authorize(Roles = "StudentAffairs")]
         public IActionResult Add()
         {
             ViewBagMethod();
             return View();
         }
-
+        [Authorize(Roles = "StudentAffairs")]
         [HttpPost]
         public IActionResult Add(Departments model)
         {
@@ -49,14 +49,14 @@ namespace StudentAutomationProject.Controllers
             _departmentsService.Add(model);
             return RedirectToAction("List");
         }
-
+        [Authorize(Roles = "StudentAffairs")]
         public IActionResult Edit(Guid uid)
         {
             ViewBagMethod();
             var data = _departmentsService.GetByUID(uid);
             return View(data);
         }
-
+        [Authorize(Roles = "StudentAffairs")]
         [HttpPost]
         public IActionResult Edit(Departments model)
         {
