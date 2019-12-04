@@ -56,6 +56,12 @@
                     <td>
                         <a class="btn btn-info" href=" @Url.Action("Edit","Exam",new{uid=item.Uid})">Düzenle</a>
                     </td>
+                    <td>
+                        <a class="btn btn-info" href=" @Url.Action("Add","ExamResult",new{courseUID=item.CourseUid, examUID = item.Uid})">Sınav Sonucu Gir</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info" href=" @Url.Action("Edit","ExamResult",new{examUID = item.Uid})">Sınav Sonucu Düzenle</a>
+                    </td>
                 }
 
             </tr>

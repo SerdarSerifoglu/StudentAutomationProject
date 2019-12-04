@@ -41,5 +41,9 @@ namespace StudentAutomationProject.BLL.Concrete
         {
             _examsDAL.Delete(new Exams() { Id = examId });
         }
+        public List<Exams> GetByCourseUID(string inc = null, Guid? courseUID=null)
+        {
+           return _examsDAL.GetList(inc, x => x.CourseUid == courseUID);
+        }
     }
 }

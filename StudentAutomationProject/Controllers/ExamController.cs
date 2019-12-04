@@ -23,13 +23,21 @@ namespace StudentAutomationProject.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("List");
         }
         [Authorize(Roles = "Teacher,StudentAffairs")]
-        public IActionResult List()
+        public IActionResult List(Guid? courseUID)
         {
             ViewBagMethod();
-            var list = _examsService.GetAll("CourseU");
+            List<Exams> list = new List<Exams>();
+            if (courseUID != null)
+            {
+                list = _examsService.GetByCourseUID("CourseU",courseUID ?? Guid.Empty);
+            }
+            else
+            {
+                list = _examsService.GetAll("CourseU");
+            }
             return View(list);
         }
         [Authorize(Roles = "Teacher")]

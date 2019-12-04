@@ -72,6 +72,8 @@ namespace StudentAutomationProject
             services.AddScoped<ITeachersDAL, EfTeachersDAL>();
             services.AddScoped<IStudentAffairsService, StudentAffairsManager>();
             services.AddScoped<IStudentAffairsDAL, EfStudentAffairsDAL>();
+            services.AddScoped<IExamResultsService, ExamResultsManager>();
+            services.AddScoped<IExamResultsDAL, EfExamResultsDAL>();
 
 
 

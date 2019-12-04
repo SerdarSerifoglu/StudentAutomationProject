@@ -170,6 +170,12 @@ namespace StudentAutomationProject.DAL.Concrete
                     .WithMany(p => p.ExamResults)
                     .HasForeignKey(d => d.PersonUid)
                     .HasConstraintName("FK_ExamResults_Students");
+
+                //ID update sıkıntısını çözüyor
+                entity.Property(p => p.Id)
+                   .UseSqlServerIdentityColumn();
+                entity.Property(p => p.Id)
+                    .Metadata.AfterSaveBehavior = PropertySaveBehavior.Ignore;
             });
 
             modelBuilder.Entity<Exams>(entity =>

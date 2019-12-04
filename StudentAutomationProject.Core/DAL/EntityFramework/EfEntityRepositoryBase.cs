@@ -30,7 +30,7 @@ namespace StudentAutomationProject.Core.DAL.EntityFramework
 
         }
 
-        public List<TEntity> GetList(string inc , Expression<Func<TEntity, bool>> filter = null)
+        public List<TEntity> GetList(string inc=null , Expression<Func<TEntity, bool>> filter = null)
         {
             using (var context = new TContext())
             {
