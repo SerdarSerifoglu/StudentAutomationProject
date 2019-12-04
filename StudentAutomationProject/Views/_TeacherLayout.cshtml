@@ -64,23 +64,21 @@
         <div class="row">
             <div class="col-md-2 col-lg-2 leftBar">
                 <div class="leftMenu">
-
-                    <div class="row leftMenuPart">
-                        Dersler
-                    </div>
                     <a href="@Url.Action("Add","Exam")">
                         <div class="row leftMenuPart">
                             Sınav Oluştur
                         </div>
                     </a>
-                    <div class="row leftMenuPart">
-                        Sınav Notları Gir
-                    </div>
-                    <a href="@Url.Action("Logout","Security")">
+                    <a href="@Url.Action("List","Exam")">
                         <div class="row leftMenuPart">
-                            Çıkış Yap
+                            Sınavlar
                         </div>
                     </a>
+                        <a href="@Url.Action("Logout","Security")">
+                            <div class="row leftMenuPart">
+                                Çıkış Yap
+                            </div>
+                        </a>
                 </div>
             </div>
             <div id="renderBody" class="col-md-10 col-lg-10">
