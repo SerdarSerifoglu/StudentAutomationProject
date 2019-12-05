@@ -98,5 +98,28 @@ namespace StudentAutomationProject.Controllers
             }
             return RedirectToAction("List", new { examUID = examUID });
         }
+        [Authorize(Roles = "Student,Teacher,StudentAffairs")]
+        public IActionResult StudentGrades(Guid? studentUID)
+        {
+            ViewBagMethod();
+            Guid sUID;
+            if (studentUID == null)
+            {
+                sUID = CurrentUser.PersonUID ?? Guid.Empty;
+            }
+            else
+            {
+                sUID = studentUID ?? Guid.Empty;
+            }
+               
+            var list = _examResultsService.GetByPersonUID(sUID);
+            StudentGradesViewModel viewModel = new StudentGradesViewModel();
+            viewModel.ExamResults = list;
+            if (list.Count > 0)
+            {
+                viewModel.Student = list.FirstOrDefault().PersonU.PersonU;
+            }
+            return View(viewModel);
+        }
     }
 }

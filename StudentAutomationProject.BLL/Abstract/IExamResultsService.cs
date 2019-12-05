@@ -15,5 +15,6 @@ namespace StudentAutomationProject.BLL.Abstract
         void Delete(int examResultId);
         ExamResults GetById(int examResultId);
         List<ExamResults> GetByExamUID(string inc, Guid examUID);
+        List<ExamResults> GetByPersonUID(Guid personUID);
     }
 }

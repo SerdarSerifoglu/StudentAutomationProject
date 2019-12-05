@@ -46,5 +46,10 @@ namespace StudentAutomationProject.BLL.Concrete
         {
             return _examResultsDAL.GetList(inc, x => x.ExamUid == examUID);
         }
+
+        public List<ExamResults> GetByPersonUID(Guid personUID)
+        {
+            return _examResultsDAL.GetByPersonUID(personUID);
+        }
     }
 }

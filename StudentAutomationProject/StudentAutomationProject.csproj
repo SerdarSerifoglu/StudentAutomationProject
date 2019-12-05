@@ -24,6 +24,18 @@
 
 
   <ItemGroup>
+    <None Include="Pages\Error.cshtml" />
+    <None Include="Pages\Index.cshtml" />
+    <None Include="Pages\Privacy.cshtml" />
+    <None Include="Pages\Shared\_CookieConsentPartial.cshtml" />
+    <None Include="Pages\Shared\_Layout.cshtml" />
+    <None Include="Pages\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Pages\_ViewImports.cshtml" />
+    <None Include="Pages\_ViewStart.cshtml" />
+  </ItemGroup>
+
+
+  <ItemGroup>
     <ProjectReference Include="..\StudentAutomationProject.BLL\StudentAutomationProject.BLL.csproj" />
     <ProjectReference Include="..\StudentAutomationProject.Core\StudentAutomationProject.Core.csproj" />
     <ProjectReference Include="..\StudentAutomationProject.DAL\StudentAutomationProject.DAL.csproj" />

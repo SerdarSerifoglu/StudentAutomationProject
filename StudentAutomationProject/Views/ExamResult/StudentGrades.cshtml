@@ -3,13 +3,20 @@
 
 @{
     ViewData["Title"] = "Öğrenci Notları";
-    Layout = "~/Views/_StudentAffairsLayout.cshtml";
+    Layout = ViewBag.Layout;
 }
 
 
-İsim: @String.Concat(Model.Student.FirstName , Model.Student.LastName)
-TC Kimlik No: @Model.Student.
-
+<div class="col-md-4">
+    <h5 style="font-weight:bold">Öğrenci Bilgileri</h5>
+    <div>
+        <strong>İsim:</strong>  @String.Concat(Model.Student.FirstName ," ", Model.Student.LastName)
+    </div>
+    <div>
+        <strong>TC Kimlik No:</strong> @Model.Student.TcNo
+    </div>
+</div>
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -20,17 +27,9 @@ TC Kimlik No: @Model.Student.
                 Sınav
             </th>
             <th>
-
+                Not
             </th>
-            <th>
 
-            </th>
-            <th>
-
-            </th>
-            <th>
-
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -38,25 +37,15 @@ TC Kimlik No: @Model.Student.
         @foreach (var item in Model.ExamResults) {
         <tr>
             <td>
-                @*@Html.DisplayFor(modelItem => item.PersonU.PersonU.FirstName)
-                    @Html.DisplayFor(modelItem => item.PersonU.PersonU.LastName)*@
                 @Html.DisplayFor(modelItem => item.ExamU.CourseU.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ExamU.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExamUid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PersonUid)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Grade)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
+
             <td></td>
         </tr>
 }

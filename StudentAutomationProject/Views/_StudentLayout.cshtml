@@ -33,6 +33,7 @@
         .topBar {
             padding: 10px 0 10px 0;
             border-bottom: 1px solid #808080;
+            background-color: #fff9f5;
         }
 
         #renderBody {
@@ -73,12 +74,14 @@
                             Derslerim
                         </div>
                     </a>
-                    <div class="row leftMenuPart">
-                        Notlarım
-                    </div>
+                    <a href="@Url.Action("StudentGrades","ExamResult")">
+                        <div class="row leftMenuPart">
+                            Notlarım
+                        </div>
+                    </a>
                     <a href="@Url.Action("Logout","Security")">
                         <div class="row leftMenuPart">
-                           Çıkış Yap
+                            Çıkış Yap
                         </div>
                     </a>
                 </div>

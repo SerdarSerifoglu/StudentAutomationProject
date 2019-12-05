@@ -22,18 +22,14 @@ namespace StudentAutomationProject.Controllers
             _courseRegistrationService = courseRegistrationService;
             _departmentPersonsService = departmentPersonsService;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
-
+        [Authorize(Roles = "Student")]
         public IActionResult MyCourses()
         {
             ViewBagMethod();
             var list = _courseRegistrationService.GetAllByStudentUID(CurrentUser.PersonUID ?? Guid.Empty);
             return View(list);
         }
-
+        [Authorize(Roles = "Student")]
         public IActionResult CourseRegister()
         {
             ViewBagMethod();
@@ -57,6 +53,7 @@ namespace StudentAutomationProject.Controllers
             }
             return View(courseRegisterViewModels);
         }
+        [Authorize(Roles = "Student")]
         [HttpPost]
         public IActionResult CourseRegister(List<CourseRegisterViewModel> courseRegisterViewModels)
         {
@@ -81,7 +78,7 @@ namespace StudentAutomationProject.Controllers
                     _courseRegistrationService.Delete(deleteModel.Uid);
                 }
             }
-            return View(courseRegisterViewModels);
+            return RedirectToAction("MyCourses");
         }
     }
 }

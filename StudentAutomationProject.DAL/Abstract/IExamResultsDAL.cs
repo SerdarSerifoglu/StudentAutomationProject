@@ -10,5 +10,6 @@ namespace StudentAutomationProject.DAL.Abstract
 {
     public interface IExamResultsDAL : IEntityRepository<ExamResults>
     {
+        List<ExamResults> GetByPersonUID(Guid personUID);
     }
 }
