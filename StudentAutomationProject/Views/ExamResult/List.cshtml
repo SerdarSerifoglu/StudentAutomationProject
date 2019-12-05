@@ -1,0 +1,53 @@
+﻿@model IEnumerable<StudentAutomationProject.Entities.Models.ExamResults>
+
+@{
+    ViewData["Title"] = "Sınav Sonuçları";
+    Layout = ViewBag.Layout;
+}
+
+<h1>List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                İsim
+            </th>
+            <th>
+                Soyisim
+            </th>
+            <th>
+                Tc Kimlik No
+            </th>
+            <th>
+                Aldığı Not
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonU.PersonU.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonU.PersonU.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonU.PersonU.TcNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

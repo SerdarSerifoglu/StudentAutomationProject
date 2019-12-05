@@ -1,0 +1,64 @@
+﻿@using StudentAutomationProject.Models.ExamResult
+@model StudentGradesViewModel
+
+@{
+    ViewData["Title"] = "Öğrenci Notları";
+    Layout = "~/Views/_StudentAffairsLayout.cshtml";
+}
+
+
+İsim: @String.Concat(Model.Student.FirstName , Model.Student.LastName)
+TC Kimlik No: @Model.Student.
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Dersin İsmi
+            </th>
+            <th>
+                Sınav
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ExamResults) {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.PersonU.PersonU.FirstName)
+                    @Html.DisplayFor(modelItem => item.PersonU.PersonU.LastName)*@
+                @Html.DisplayFor(modelItem => item.ExamU.CourseU.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamU.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamUid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonUid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td></td>
+        </tr>
+}
+    </tbody>
+</table>
