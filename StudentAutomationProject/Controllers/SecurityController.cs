@@ -90,8 +90,8 @@ namespace StudentAutomationProject.Controllers
             {
                 UserName = registerViewModel.Username,
                 Email = registerViewModel.Email,
-                //Persons tablosuna tip kolonu eklenip onunla eşleştirilebilir.
-                Type = 1,
+                //Persons tablosuna tip kolonu eklenip onunla eşleştirilebilir.Şimdilik öğrenci kaydedilir halde bırakıldı.
+                Type = 3,
                 PersonUID = personData.Uid
             };
 

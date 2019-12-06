@@ -34,7 +34,7 @@ namespace StudentAutomationProject.Controllers
         {
             return RedirectToAction("List");
         }
-        [Authorize(Roles = "StudentAffairs")]
+        [Authorize(Roles = "StudentAffairs,Teacher")]
         public IActionResult List(Guid? departmentUID)
         {
             ViewBagMethod();

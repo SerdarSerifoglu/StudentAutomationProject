@@ -21,15 +21,12 @@
                 İsim
             </th>
             <th>
-                Soyisim
-            </th>
-            <th>
                 TcNo
             </th>
             <th>
                 Durum
             </th>
-            <th></th>
+           
         </tr>
     </thead>
     <tbody>
@@ -44,8 +41,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PersonU.FirstName)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.PersonU.LastName)
                 </td>
                 <td>
@@ -61,15 +56,16 @@
 </table>
 <button class="btn btn-info" onclick="Gonder()">Kaydet</button>
 <script>
+    debugger
     var jsModel = @Html.Raw(Json.Serialize(new StudentDataModel()));
-
-
-    var url = '@Url.Content("/")' + "Student/ListDepartmentCombo";
+    
+    var url ="/Student/ListDepartmentCombo";
     getJSONforComboBox(url, null, "#DepartmentUID", null);
 
 
     function Gonder() {
         var searchIDs = $('input:checked').map(function () {
+            debugger
             return $(this).val();
         });
         jsModel.Dizi = searchIDs.get();

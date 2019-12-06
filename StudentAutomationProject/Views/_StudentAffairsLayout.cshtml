@@ -33,6 +33,7 @@
         .topBar {
             padding: 10px 0 10px 0;
             border-bottom: 1px solid #808080;
+            background-color: #fff9f5;
         }
 
         #renderBody {
@@ -49,9 +50,11 @@
     <div class="container-fluid">
         <div class="row topBar">
             <div class="col-md-2 col-lg-2 topLeftBar">
-                <div class="logo text-center">
-                    Öğrenci İşleri 
-                </div>
+                <a href="@Url.Action("/","Department")">
+                    <div class="logo text-center">
+                        Öğrenci İşleri
+                    </div>
+                </a>
             </div>
             <div class="col-md-8 col-lg-8 topCenterBar">
                 <h4 class="text-center" style="margin-top:5px!important;">@ViewBag.Title</h4>
@@ -111,6 +114,12 @@
                     <a href="@Url.Action("List","Exam")">
                         <div class="row leftMenuPart">
                             Sınavlar
+                        </div>
+                    </a>
+
+                    <a href="@Url.Action("Users","Security")">
+                        <div class="row leftMenuPart">
+                            Kullanıcı Yönetimi
                         </div>
                     </a>
                     <a href="@Url.Action("Logout","Security")">

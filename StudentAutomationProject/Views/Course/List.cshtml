@@ -13,48 +13,49 @@
         <a class="btn btn-primary btn-sm" asp-action="Add" asp-route-departmentUID="@Model.Department.Uid">Ders Ekle</a>
     </p>
 }
-    <table class="table">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Ders ismi
+            </th>
+            <th>
+                Kontenjan
+            </th>
+            <th>
+                Bölüm İsmi
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Courses)
+        {
             <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Ders ismi
-                </th>
-                <th>
-                    Kontenjan
-                </th>
-                <th>
-                    Bölüm İsmi
-                </th>
-                <th></th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quota)
+                </td>
+                <td>
+                    @Model.Department.Name
+                </td>
+                <td>
+                    @if (ViewBag.CurrentUserType == 1)
+                    {
+                        <a class="btn btn-info" href=" @Url.Action("Edit", "Course", new { uid = item.Uid })">Düzenle</a>
+                    }
+                    <a class="btn btn-warning" href=" @Url.Action("List","Exam",new{courseUID=item.Uid})">Sınavlara Git</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Courses)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Quota)
-                    </td>
-                    <td>
-                        @Model.Department.Name
-                    </td>
-                    <td>
-                        @if (ViewBag.CurrentUserType == 1)
-                        {
-                            <a class="btn btn-info" href=" @Url.Action("Edit", "Course", new { uid = item.Uid })">Düzenle</a>
-                        }
-                            <a class="btn btn-warning" href=" @Url.Action("List","Exam",new{courseUID=item.Uid})">Sınavlara Git</a>
-                        </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
+<a asp-action="List" asp-controller="Department">Bölüm Listesine Dön</a>

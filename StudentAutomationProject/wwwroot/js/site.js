@@ -1,7 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your Javascript code.
+﻿
 //Post İşlemleri
 post = function (url, data, bsariCallback, hataCallbakc) {
     _ajaxJson(url, data, bsariCallback, hataCallbakc, "post");
@@ -74,7 +71,7 @@ _ajaxJson = function (url, data, basariCallback, hataCallback, type) {
 };
 
 
-//comboboxlara bilgi getiren metod
+//comboboxlara data getiren metod
 function getJSONforComboBox(url, sendData, name, selectId) {
     $.getJSON(url, sendData,
         function (data) {

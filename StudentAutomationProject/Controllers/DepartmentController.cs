@@ -22,6 +22,7 @@ namespace StudentAutomationProject.Controllers
             _departmentsService = departmentsService;
             _coursesService = coursesService;
         }
+        [Route("/")]
         public IActionResult Index()
         {
             ViewBagMethod();

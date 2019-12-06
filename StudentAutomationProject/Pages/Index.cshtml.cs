@@ -11,7 +11,6 @@ namespace StudentAutomationProject.Pages
     {
         public void OnGet()
         {
-            RedirectToAction("Index","Department");
         }
     }
 }
